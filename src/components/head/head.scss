@@ -1,0 +1,15 @@
+@import "../../modules/sass/variables.scss";
+
+#head .vux-header{
+  z-index:1
+}
+
+#head .vux-search-box{
+  position:absolute;
+  z-index:1;
+  top:0;
+  width: 100px;
+  right: 0;
+  transition: width 1s;
+  display:none
+}

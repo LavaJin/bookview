@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>首页</title>
+</head>
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+<body>
+<div id="body" v-cloak>
+  <view-box ref="viewBox">
+    <myhead style="position:fixed;width: 100%;z-index:1"></myhead>
+
+    <swiper style="margin-top:46px" aspect-ratio=".4" :list="bannerList" dots-position="center" auto loop></swiper>
+
+    <scroller lock-y :scrollbar-x=false>
+      <div class="box1">
+
+        <div class="box1-item">
+          <div class="iconWapper" style="background: #fa7066"><i class="iconfont icon-lingyupaiming"></i></div>
+          <p>借阅排名</p>
+        </div>
+
+        <div class="box1-item">
+          <div class="iconWapper" style="background: #ffb83f"><i class="iconfont icon-xing"></i></div>
+          <p>精彩活动</p>
+        </div>
+
+        <div class="box1-item">
+          <div class="iconWapper" style="background: #5292f6"><i class="weui-icon-search"></i></div>
+          <p>新书推荐</p>
+        </div>
+
+        <div class="box1-item">
+          <div class="iconWapper" style="background: #fc537e"><i class="weui-icon-search"></i></div>
+          <p>成为会员</p>
+        </div>
+
+
+      </div>
+    </scroller>
+
+    <div class="content">
+      <div style="height:44px;">
+        <sticky ref="sticky" :offset="46" :check-sticky-support="false">
+          <tab :line-width="1">
+            <tab-item selected @click.native="show(0)">启蒙 <span style="font-size:12px">(2-6岁)</span></tab-item>
+            <tab-item @click.native="show(1)">启蒙 <span style="font-size:12px">(7-12岁)</span></tab-item>
+            <tab-item @click.native="show(2)">思辨 <span style="font-size:12px">(12岁以上)</span> </tab-item>
+            <tab-item @click.native="show(3)">其他</tab-item>
+          </tab>
+        </sticky>
+      </div>
+
+      <div>
+        <transition :name="transitionName">
+          <div v-show="listIndex==0" class="bookList">
+            <flexbox wrap="wrap" :gutter="0">
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">1画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+
+            </flexbox>
+          </div>
+        </transition>
+      </div>
+
+      <div>
+        <transition :name="transitionName">
+          <div v-show="listIndex==1" class="bookList">
+            <flexbox wrap="wrap" :gutter="0">
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">2画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+
+            </flexbox>
+          </div>
+        </transition>
+      </div>
+
+      <div>
+        <transition :name="transitionName">
+          <div v-show="listIndex==2" class="bookList">
+            <flexbox wrap="wrap" :gutter="0">
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">3画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+
+            </flexbox>
+          </div>
+        </transition>
+      </div>
+
+      <div>
+        <transition :name="transitionName">
+          <div v-show="listIndex==3" class="bookList">
+            <flexbox wrap="wrap" :gutter="0">
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">4画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+              <flexbox-item :span="1/3">
+                <div class="book">
+                  <div><img src="/static/book.jpg" alt="">
+                    <div class="detail">
+                      <p class="title">婴儿画报2017年大撒</p>
+                      <p class="author">作者:金波</p>
+                      <p class="rank">借阅排名:870位</p>
+                    </div>
+                  </div>
+                </div>
+              </flexbox-item>
+
+
+            </flexbox>
+          </div>
+        </transition>
+      </div>
+
+
+    </div>
+
+
+  </view-box>
+  <foot></foot>
+</div>
+</body>
+
+</html>
+
+
