@@ -1,4 +1,4 @@
 module.exports = {
-        host: 'http://rap.taobao.org/mockjsdata/16487'
-        // host: ''
+        host: ''
+        // host: 'http://rap.taobao.org/mockjsdata/16487'
       }

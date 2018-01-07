@@ -3,6 +3,7 @@ import './head.scss'
 import {XHeader, Search} from 'vux'
 
 import {fetch, rap} from 'js/fetch.js'
+
 import bus from 'js/bus.js'
 
 let url = {
@@ -12,19 +13,45 @@ let url = {
 url = rap(url)
 
 export default {
+  props: {
+    title: {
+      type: String,
+      default: '书城',
+    }
+  },
   data() {
     return {
-      mobile: '',
-      isLogin: false
+      results: [],
+      value: ''
     }
   },
   created() {
 
   },
   methods: {
-    //显示搜索框
-    showSearch(){
-
+    setFocus () {
+      //this.$refs.search.setFocus()
+    },
+    resultClick (item) {
+      window.alert('you click the result item: ' + JSON.stringify(item))
+    },
+    getResult (val) {
+      console.log('on-change', val)
+      this.results = val ? getResult(this.value) : []
+    },
+    onSubmit () {
+      this.$refs.search.setBlur()
+      this.$vux.toast.show({
+        type: 'text',
+        position: 'top',
+        text: 'on submit'
+      })
+    },
+    onFocus () {
+      console.log('on focus')
+    },
+    onCancel () {
+      console.log('on cancel')
     }
   },
   components: {

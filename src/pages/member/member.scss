@@ -1,0 +1,102 @@
+@import "../../modules/icon/fonts/iconfont.css";
+@import "../../modules/sass/variables.scss";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: $theme-gray200-color;
+}
+
+#body {
+  .person {
+    height: 170px;
+    padding-top: 46px;
+    background: url('./imgs/person.png');
+    text-align: center;
+    .headerWapper {
+      width: 96px;
+      height: 96px;
+      overflow: hidden;
+      border-radius: 50%;
+      box-sizing: border-box;
+      vertical-align: top;
+      img {
+        width: 96px;
+        height: 96px;
+      }
+    }
+    & > div {
+      text-align: left;
+      display: inline-block;
+      margin: 0 auto;
+      padding-top: 20px;
+      & > div {
+        display: inline-block;
+        color: #fff;
+      }
+      & > div + div {
+        padding-top: 14px;
+        p {
+          font-size: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 200px;
+
+        }
+        p + p {
+          font-size: 14px;
+          padding-top: 10px;
+        }
+      }
+    }
+    & > div + div {
+      display: block;
+      padding-top: 0px;
+      text-align: center;
+      & > div {
+        display: inline-block;
+        padding-top: 10px;
+        .iconfont {
+          font-size: 24px;
+        }
+      }
+    }
+    .right-arrow {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      top: -5px;
+      left: -5px;
+      &:before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #fff;
+        border-width: 1px 0 0 1px;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+        top: -7px;
+        left: 7px;
+      }
+    }
+    .vux-badge {
+      position: relative;
+      left: -8px;
+      top: -14px;
+      background: #fff;
+      border: 1px solid $theme-color;
+      color: $theme-color;
+    }
+
+  }
+  .weui-cells {
+    .iconfont {
+      color:$theme-red700-color;
+      font-size: 28px;
+      padding-right: 10px;
+    }
+  }
+}
+

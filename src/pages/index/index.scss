@@ -5,10 +5,10 @@ html, body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
+  background: $theme-gray200-color;
 }
 
 #body {
-  background: #f0f0f0;
 }
 
 #body .xs-container {
@@ -17,7 +17,6 @@ html, body {
 
 #body .content {
   margin-top: 16px;
-  margin-bottom: 16px;
   .bookList {
     background: #fff;
     transition: all .8s cubic-bezier(.55, 0, .1, 1);
@@ -47,7 +46,7 @@ html, body {
     line-height: 2;
     font-size: 14px;
   }
-  .iconfont{
+  .iconfont {
     font-size: 22px;
   }
 }
@@ -60,6 +59,7 @@ html, body {
   margin: 0 auto;
   margin-top: 23px;
   font-weight: bold;
+  border: 1px solid $theme-color;
 }
 
 #body .box1-item {
@@ -69,6 +69,10 @@ html, body {
   float: left;
   text-align: center;
   line-height: 40px;
+  .iconfont {
+    font-size: 20px;
+    color: $theme-color
+  }
 }
 
 #body .vux-flexbox {
@@ -82,9 +86,12 @@ html, body {
   .title {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
     font-size: 16px;
     font-weight: bold;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 14px;
   }
   .author {
     font-size: 14px;
@@ -118,14 +125,15 @@ html, body {
 }
 
 #body .vux-tab .vux-tab-item.vux-tab-selected {
-  color: #f65e13;
-  border-bottom: 3px solid #f65e13;
+  color: $theme-color;
+  border-bottom: 3px solid $theme-color;
 }
 
 #body .vux-tab-ink-bar {
-  background-color: #f65e13;
+  background-color: $theme-color;
 }
 
-#body .weui-bar__item_on .weui-tabbar__icon .iconfont,#body .weui-bar__item_on  .weui-tabbar__label{
-  color: #f65e13;
+#body .vux-slider > .vux-indicator > a > .vux-icon-dot.active, #body .vux-slider .vux-indicator-right > a > .vux-icon-dot.active {
+  background:$theme-origin600-color;
 }
+

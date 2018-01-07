@@ -34,5 +34,13 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
+  },
+  devServer: {
+    historyApiFallbak: true,
+    hot: true,
+    host: "192.168.0.103",   //填写你自己的IP地址
+    port: 8081,   //填写刚刚在dev字段中找到的port端口号
+    inline: true,
+    progress: true
   }
 }

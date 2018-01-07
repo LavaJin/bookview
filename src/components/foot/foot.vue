@@ -10,10 +10,10 @@
         <span slot="label">分类</span>
       </tabbar-item>
       <tabbar-item>
-        <i slot="icon" class="iconfont icon-lanzi50" ></i>
+        <i slot="icon" style="font-size: 28px;position: relative;top: -4px;" class="iconfont icon-lanzi50" ></i>
         <span slot="label">借书蓝</span>
       </tabbar-item>
-      <tabbar-item>
+      <tabbar-item link="./member.html">
         <i slot="icon" class="iconfont icon-wode" ></i>
         <span slot="label">我的</span>
       </tabbar-item>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>会员中心</title>
+</head>
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+<body>
+<div id="body" v-cloak>
+
+  <myhead style="position:fixed;width: 100%;z-index:1"></myhead>
+
+  <div class="person">
+    <div>
+      <div class="headerWapper">
+        <img src="/static/head.png" alt="">
+      </div>
+      <div>
+        <p>peterPan小飞侠</p>
+        <p>会员有效期：2018-01-31</p>
+      </div>
+      <div>
+        <div class="right-arrow"></div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <span><i class="iconfont icon-comment21"></i>
+          <badge text="1"></badge>
+        </span>
+        <span><i class="iconfont icon-09"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+  <group>
+    <cell title="已借图书" link="./had_to_borrow_books.html">
+      <i slot="icon" class="iconfont icon-tushuzulin"></i>
+    </cell>
+
+    <cell title="预定图书" link="./reservation_books.html">
+      <i slot="icon" class="iconfont icon-yuding"></i>
+    </cell>
+
+    <cell title="收藏图书" link="./collection_books.html">
+      <i slot="icon" class="iconfont icon-shoucang"></i>
+    </cell>
+  </group>
+
+  <group>
+    <cell title="推荐引进图书">
+      <i slot="icon" class="iconfont icon-like"></i>
+    </cell>
+
+    <cell title="历史借书">
+      <i slot="icon" class="iconfont icon-lishi"></i>
+    </cell>
+
+  </group>
+
+
+  <foot></foot>
+
+
+</div>
+</body>
+
+</html>
+
+

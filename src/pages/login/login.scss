@@ -1,0 +1,60 @@
+@import "../../modules/icon/fonts/iconfont.css";
+@import "../../modules/sass/variables.scss";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: $theme-gray200-color;
+}
+
+#body {
+  background-image: url(./imgs/login-bg.png);
+  background-size: cover;
+}
+
+#body .title {
+  text-align: center;
+}
+
+#body .form {
+  width: 440px;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 6px;
+  padding-top: 32px;
+  padding-left: 30px;
+  padding-right: 30px;
+  .border-1px {
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    margin-bottom: 14px;
+  }
+  .weui-cell {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+
+  .weui-cells {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+
+  p {
+    text-align: center;
+    .strong {
+      color: #f59a19;
+    }
+  }
+  .check {
+    text-align: center;
+  }
+
+}
+
+
+
+

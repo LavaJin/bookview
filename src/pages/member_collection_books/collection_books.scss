@@ -1,0 +1,87 @@
+@import "../../modules/icon/fonts/iconfont.css";
+@import "../../modules/sass/variables.scss";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: $theme-gray200-color;
+}
+
+#body {
+  .content {
+    .left-book {
+      border: 1px solid $theme-gray200-color;
+      width: 105px;
+      vertical-align: top;
+      margin-left: 5px;
+      margin-right: 5px;
+      position: absolute;
+      img {
+        max-width: 105px;
+      }
+    }
+    .right-book {
+      padding-top: 6px;
+      margin-left: 120px;
+    }
+  }
+  li {
+    & > div {
+      position: relative;
+    }
+    .weui-cells {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      min-height: 150px;
+      .author {
+        font-size: 14px;
+        padding-right: 7px;
+        color: $theme-gray600-color;
+      }
+      .content {
+        text-indent: 1em;
+        font-size: 14px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+      .buttons {
+        position: absolute;
+        top: 110px;
+        .weui-btn {
+          margin-top: 15px;
+        }
+      }
+    }
+    & .weui-cells > div {
+      display: inline-block;
+      .weui-btn {
+        margin-right: 7px;
+      }
+    }
+  }
+}
+
+#body .vux-label .number {
+  color: $theme-red700-color;
+}
+
+#body .weui-btn_default {
+  background: $theme-red700-color;
+  color: white;
+}
+
+#body .rotate {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+#body .pullup-arrow {
+  display: block;
+  transition: all linear 0.2s;
+  -webkit-transition: all linear 0.2s;
+  color: #666;
+  font-size: 25px;
+}
+

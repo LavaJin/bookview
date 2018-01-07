@@ -4,6 +4,15 @@
   min-width: 1200px;
 }
 
+
+#foot .weui-tabbar__item .weui-tabbar__icon{
+  padding-bottom: 5px;
+}
+
+#foot .weui-bar__item_on .weui-tabbar__icon .iconfont,#foot .weui-bar__item_on  .weui-tabbar__label{
+  color: $theme-color;
+}
+
 .ft {
   background-color: #181818;
 }

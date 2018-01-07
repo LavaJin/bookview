@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>推荐引进图书</title>
+</head>
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+<body>
+<div id="body" v-cloak>
+
+  <myhead style="position:fixed;width: 100%;z-index:1"></myhead>
+
+  <scroller lock-x scrollbar-y  height="-100" ref="scroller" style="padding-top: 46px" use-pullup v-model="demo4Value" @on-pullup-loading="load4">
+
+
+
+
+    <div class="box2">
+      <group>
+        <cell>
+          <span slot="title">当前收藏图书：<span class="number">10</span>本</span>
+        </cell>
+      </group>
+      <div class="content">
+        <ul>
+          <li v-for="(item,index) in lists">
+            <group>
+              <div class="left-book"><img :src="item.img" alt=""></div>
+              <div class="right-book">
+                <p>{{item.title}}</p>
+                <p><span class="author">{{item.author}}</span> <x-button mini plain disabled>{{item.status}}</x-button></p>
+                <p class="content">{{item.content}}</p>
+                <p class="buttons"><x-button mini>收藏图书</x-button></p>
+              </div>
+            </group>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div slot="pullup" class="xs-plugin-pullup-container xs-plugin-pullup-up" style="position: absolute; width: 100%; height: 40px; bottom: -30px; text-align: center;">
+      <span v-show="demo4Value.pullupStatus === 'default'"></span>
+      <span class="pullup-arrow" v-show="demo4Value.pullupStatus === 'default' || demo4Value.pullupStatus === 'up' || demo4Value.pullupStatus === 'down'" :class="{'rotate': demo4Value.pullupStatus === 'down'}">↑</span>
+      <span v-show="demo4Value.pullupStatus === 'loading'"><spinner type="ios-small"></spinner></span>
+    </div>
+  </scroller>
+
+
+
+
+
+  <foot></foot>
+
+
+</div>
+</body>
+
+</html>
+
+
