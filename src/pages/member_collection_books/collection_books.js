@@ -21,6 +21,7 @@ import Myhead from 'components/head/head.vue'
 import Top from 'components/top/top.vue'
 // import Search from 'components/search/search.vue'
 import Foot from 'components/foot/foot.vue'
+import Booklist from 'components/booklist/booklist.vue'
 
 import mixin from 'js/mixin.js'
 
@@ -28,7 +29,7 @@ new Vue({
   el: '#body',
   data: {
     showList1: true,
-    lists: [
+    bookList: [
       {
         title: '婴儿画报2017年第三季度合订本',
         img: '/static/book.jpg',
@@ -80,7 +81,12 @@ new Vue({
     }
   },
   created() {
+    if(cookie.get('token')){
 
+    }else{
+      
+    }
+    
   },
   methods: {
     load4 () {
@@ -117,7 +123,8 @@ new Vue({
     Panel,
     XButton,
     Scroller,
-    Cell
+    Cell,
+    Booklist
   },
   mixins: [mixin]
 })

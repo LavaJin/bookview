@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图书详情</title>
+</head>
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+
+<body>
+  <div id="body" style="height: 100%" v-cloak>
+    <div id="booklist">
+      <div class="box2">
+        <div class="content">
+          <ul>
+            <li>
+              <group>
+                <div class="left-book">
+                  <img :src="bookInfo.cover" onerror="this.src='/static/book.jpg'" alt="">
+                </div>
+                <div class="right-book">
+                  <p class="title">{{bookInfo.name}}</p>
+                  <p>
+                    <span class="author">作者：{{bookInfo.author}}</span>
+                    <span class="status">已领取</span>
+                  </p>
+                  <p class="content">库存：{{bookInfo.inventory}}本
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>{{bookInfo.like_count}}</span>
+                    <i class="iconfont icon-comment21"></i>
+                    <span>{{bookInfo.collect_count}}</span>
+                  </p>
+                  <p class="buttons">
+                    <x-button mini type="primary">借阅</x-button>
+                    <x-button mini type="primary">预约</x-button>
+                  </p>
+                </div>
+              </group>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div style="height:44px;">
+        <sticky ref="sticky" :offset="46" :check-sticky-support="false">
+          <tab :line-width="1">
+
+            <tab-item v-if='index==0' selected v-for="(item,index) in categoriesList" @click.native="show(index)">{{item.name}}
+
+            </tab-item>
+
+            <tab-item v-if='index!=0' v-for="(item,index) in categoriesList" @click.native="show(index)">{{item.name}}
+
+            </tab-item>
+
+
+
+
+          </tab>
+        </sticky>
+      </div>
+
+      <div>
+        <transition :name="transitionName">
+          <div v-show="listIndex==0" class="bookList">
+            <scroller lock-x height="-260" ref="scroller">
+              <div class="content" v-html='bookInfo.detail'>
+                <p>0-3岁幼儿的习惯培养要靠父母反复说与反复教？不，这套翻翻绘本将为千万妈妈解决育儿烦恼——好习惯真的可以“玩”出来!</p>
+                <p>※极具创意的翻翻绘本，0-3岁幼儿习惯培养启蒙的“好玩伴”，围绕刷牙、吃饭、洗澡、拉臭4方面行为习惯培养问题创作，随书贴心附送8件玩具，让宝贝在游戏中养成生活好习惯。</p>
+                <p>※形式新颖，幼儿可以边翻边玩，在重复有趣动作的过程中提高动手能力；故事语言使用精妙，邀请式的语句反复出现，使孩子的参与感更强，更专注于趣味游戏与亲密的互动中。</p>
+                <p>※小开本，让孩子轻松掌控；磨圆角，保护娇嫩小手；硬纸板，随意翻折，宝贝就能一玩再玩。</p>
+                <div>
+                  <img src="./static/detail.jpg" alt="">
+                </div>
+                <p>
+                  （禹田文化出品）创意翻翻绘本，0-3岁娃必备习惯培养启蒙书。附送8件玩具，家长可邀请娃和动物一起刷牙、吃饭、洗澡、拉臭，看谁做得快又好。重复有趣的动作，在互动游戏中让孩子养成好习惯，提高动手和语言能力</p>
+              </div>
+            </scroller>
+          </div>
+        </transition>
+      </div>
+
+      <div>
+        <transition :name="transitionName">
+          <div v-show="listIndex==1" class="bookList">
+            <scroller lock-x height="-260" ref="scroller">
+              <div class="comment">
+                <ul>
+                  <li class='vux-1px-b'>
+                    <div class="clearfix">
+                      <div class="portrait">
+                        <img src="./static/head2.png" alt="">
+                      </div>
+                      <div class="contant">
+                        <div>
+                          <h3 class="name">李冰</h3>
+                          <p class="date">12:12</p>
+                        </div>
+                        <p class="discuss">适合妈妈给1-2岁的小朋友讲，3岁的小朋友有点简单了。简单的说内容脑洞大开，不错，让孩子爱不释手</p>
+                        <p class="button">查看对话</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+            </scroller>
+          </div>
+        </transition>
+      </div>
+
+
+    </div>
+
+    <foot :index="1"></foot>
+
+  </div>
+
+</body>
+
+</html>

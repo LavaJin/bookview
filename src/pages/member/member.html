@@ -7,7 +7,7 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>会员中心</title>
+  <title>个人中心</title>
 </head>
 <style>
   [v-cloak] {
@@ -17,18 +17,18 @@
 <body>
 <div id="body" v-cloak>
 
-  <myhead style="position:fixed;width: 100%;z-index:1"></myhead>
+  <myhead slot="header" title="" :showsearch=true style="position:fixed;width: 100%;z-index:1"></myhead>
 
   <div class="person">
     <div>
       <div class="headerWapper">
-        <img src="/static/head.png" alt="">
+        <img :src="userInfo.avatar" alt="" onerror="this.src='/static/head.png'">
       </div>
       <div>
-        <p>peterPan小飞侠</p>
+        <p v-text='userInfo.name'></p>
         <p>会员有效期：2018-01-31</p>
       </div>
-      <div>
+      <div @click=logout>
         <div class="right-arrow"></div>
       </div>
     </div>
@@ -44,9 +44,10 @@
   </div>
 
 
-  <group>
+
+  <group class="myGroup">
     <cell title="已借图书" link="./had_to_borrow_books.html">
-      <i slot="icon" class="iconfont icon-tushuzulin"></i>
+      <i slot="icon" class="iconfont icon-jieyueguanli"></i>
     </cell>
 
     <cell title="预定图书" link="./reservation_books.html">
@@ -56,21 +57,23 @@
     <cell title="收藏图书" link="./collection_books.html">
       <i slot="icon" class="iconfont icon-shoucang"></i>
     </cell>
-  </group>
 
-  <group>
-    <cell title="推荐引进图书">
-      <i slot="icon" class="iconfont icon-like"></i>
+    <cell title="我想求书" link="./recommended_books.html">
+      <i slot="icon" class="iconfont icon-qiuyi"></i>
     </cell>
 
-    <cell title="历史借书">
-      <i slot="icon" class="iconfont icon-lishi"></i>
+    <cell title="历史借书" link="./history_books.html">
+      <i slot="icon" class="iconfont icon-lishiguiji"></i>
+    </cell>
+
+    <cell title="我的还书" link="./return_books.html">
+      <i slot="icon" class="iconfont icon-lishiguiji"></i>
     </cell>
 
   </group>
 
 
-  <foot></foot>
+  <foot :index="4"></foot>
 
 
 </div>

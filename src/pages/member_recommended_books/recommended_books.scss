@@ -1,0 +1,92 @@
+@import "../../modules/icon/fonts/iconfont.css";
+@import "../../modules/sass/variables.scss";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: $theme-gray200-color;
+}
+
+#body .content ul li:nth-of-type(1) .weui-cells {
+  margin-top: 0;
+}
+
+#body .vux-label{
+  color: $theme-gray800-color;
+  font-size: 15px;
+}
+
+#body .weui-cell__ft{
+  position: relative;
+  color: $theme-red700-color;
+}
+
+#body .weui-icon-warn{
+  color: $theme-red700-color;
+}
+#body .require{
+  position: relative;
+  top:4px;
+}
+
+#booklist .weui-cells{
+  margin-top: 0;
+  
+}
+#booklist .weui-cells:after{
+  left:0;
+  right:0
+}
+
+
+#body .vux-label .number {
+  color: $theme-red700-color;
+}
+
+#body .weui-btn_default {
+  background: $theme-red700-color;
+  color: white;
+}
+
+#body .rotate {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+#body .pullup-arrow {
+  display: block;
+  transition: all linear 0.2s;
+  -webkit-transition: all linear 0.2s;
+  color: #666;
+  font-size: 25px;
+}
+
+#body .box2 .vux-no-group-title {
+  margin-top: 0;
+}
+
+#body .form .weui-cells {
+  background: $theme-gray50-color;
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+#body .form .vux-x-input {
+  border: 1px solid #d7d7d7;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 4px 15px;
+  font-size: 13px;
+}
+
+#body .form .weui-btn {
+  width: 80%;
+  margin-top: 5px;
+  background: $theme-red700-color;
+  font-size: 13px;
+  line-height: 2.3;
+}
+

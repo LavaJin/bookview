@@ -17,6 +17,10 @@ export default {
     title: {
       type: String,
       default: '书城',
+    },
+    showsearch: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -29,6 +33,9 @@ export default {
 
   },
   methods: {
+    haha () {
+      alert(1)
+    },
     setFocus () {
       //this.$refs.search.setFocus()
     },

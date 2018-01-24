@@ -9,69 +9,80 @@ html, body {
 }
 
 #body {
+  background: #fff;
 }
 
 #body .xs-container {
   background: #fff;
 }
 
+
 #body .content {
-  margin-top: 16px;
   .bookList {
-    background: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: $theme-gray50-color;
     transition: all .8s cubic-bezier(.55, 0, .1, 1);
-    .book {
-      margin-top: 21px;
+      .book {
+        margin-top: 10px;
+      }
+      .book .bookWrapper > div {
+        max-width: 100px;
+        max-height: 130px;
+        margin: 0 auto;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      img {
+        max-width: 100px;
+        min-height: 130px
+      }
     }
-    .book > div {
-      //border: 1px solid #efefef;
-      text-align: center;
-      //width: 104px;
-      //height: 214px;
-    }
-    img {
-      max-width: 104px;
-      max-height: 134px;
-      border: 1px solid #efefef;
-    }
-  }
 }
 
 #body .box1 {
-  height: 94px;
+  height: 84px;
   position: relative;
   width: 175vw;
   background: white;
   p {
     line-height: 2;
-    font-size: 14px;
+    font-size: 13px;
   }
   .iconfont {
     font-size: 22px;
+    font-weight: normal;
+    color:$theme-red700-color;
   }
 }
 
 #body .iconWapper {
   width: 40px;
   height: 40px;
-  color: white;
+  color: $theme-red700-color;
   border-radius: 50%;
   margin: 0 auto;
   margin-top: 23px;
   font-weight: bold;
-  border: 1px solid $theme-color;
+  border: 1px solid $theme-red700-color;
 }
 
 #body .box1-item {
   width: 25vw;
-  height: 94px;
+  height: 88px;
   display: inline-block;
   float: left;
   text-align: center;
   line-height: 40px;
   .iconfont {
     font-size: 20px;
-    color: $theme-color
+    color: $theme-red700-color;
+    font-weight: normal;
+  }
+  p{
+    color: $theme-gray800-color;
+    font-size: 13px;
+
   }
 }
 
@@ -86,18 +97,27 @@ html, body {
   .title {
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 16px;
-    font-weight: bold;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: normal;
+    color:$theme-gray800-color;
+    margin-top: 4px;
   }
   .author {
-    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 13px;
+    font-weight: normal;
+    color: $theme-gray600-color;
+    margin-top: 4px;
   }
   .rank {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 
@@ -124,16 +144,20 @@ html, body {
   background: rgba(0, 0, 0, 0.2);
 }
 
+#body .vux-tab{
+  background: $theme-gray50-color;;
+}
+
 #body .vux-tab .vux-tab-item.vux-tab-selected {
-  color: $theme-color;
-  border-bottom: 3px solid $theme-color;
+  color: $theme-red700-color;
+  border-bottom: 3px solid $theme-red700-color;
 }
 
 #body .vux-tab-ink-bar {
-  background-color: $theme-color;
+  background-color: $theme-red700-color;
 }
 
 #body .vux-slider > .vux-indicator > a > .vux-icon-dot.active, #body .vux-slider .vux-indicator-right > a > .vux-icon-dot.active {
-  background:$theme-origin600-color;
+  background: $theme-red700-color;
 }
 

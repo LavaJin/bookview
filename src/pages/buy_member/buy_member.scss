@@ -1,0 +1,212 @@
+@import "../../modules/icon/fonts/iconfont.css";
+@import "../../modules/sass/variables.scss";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background: $theme-gray50-color;
+}
+
+#body {
+  background: $theme-gray50-color
+}
+
+#body .xs-container {
+  background: $theme-gray50-color
+}
+
+#body .bookList{
+  background: $theme-gray50-color
+}
+
+#body .content {
+  .list {
+    background: $theme-gray50-color;
+    transition: all .8s cubic-bezier(.55, 0, .1, 1);
+    li {
+      background: $theme-gray50-color;
+      border-bottom: 1px solid #f2f2f2;
+      padding: 22px 0;
+      .main {
+        float: left;
+        width: 100%;
+      }
+      .mainContainer {
+        margin: 0 100px;
+        /*height: 200px;*/
+        margin-left: 88px;
+        h4 {
+          line-height: 2;
+        }
+        p{
+          font-size: 14px;
+        }
+      }
+      .left {
+        float: left;
+        margin-left: -100%;
+        width: 88px;
+        text-align: center;
+        img {
+          width: 48px;
+          text-align: center;
+
+        }
+      }
+
+      .right {
+        float: left;
+        margin-left: -100px;
+        width: 100px;
+        text-align: center;
+        h4 {
+          line-height: 2;
+          color: $theme-red700-color;
+        }
+        .weui-btn{
+          background:$theme-red700-color;
+          color: #fff;
+        }
+      }
+
+      .left .inner,
+      .right .inner {
+        margin: 0px;
+        /*height: 200px;*/
+      }
+    }
+  }
+  .book {
+    margin-top: 21px;
+  }
+  .book > div > div {
+    max-width: 110px;
+    max-height: 160px;
+    margin: 0 auto;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  img {
+    max-width: 110px;
+  }
+}
+
+#body .box1 {
+  height: 94px;
+  position: relative;
+  width: 175vw;
+  background: white;
+  p {
+    line-height: 2;
+    font-size: 14px;
+  }
+  .iconfont {
+    font-size: 22px;
+  }
+}
+
+#body .iconWapper {
+  width: 40px;
+  height: 40px;
+  color: white;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 23px;
+  font-weight: bold;
+  border: 1px solid $theme-color;
+}
+
+#body .box1-item {
+  width: 25vw;
+  height: 94px;
+  display: inline-block;
+  float: left;
+  text-align: center;
+  line-height: 40px;
+  .iconfont {
+    font-size: 20px;
+    color: $theme-color
+  }
+  p {
+    color: black;
+  }
+}
+
+#body .vux-flexbox {
+  padding-bottom: 30px;
+}
+
+#body .detail {
+  max-width: 104px;
+  text-align: left;
+  margin: 0 auto;
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: bold;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 14px;
+  }
+  .author {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 14px;
+  }
+  .rank {
+    font-size: 14px;
+  }
+}
+
+.slide-left-enter, .slide-right-leave-active {
+  opacity: 0;
+  -webkit-transform: translate(50px, 0);
+  transform: translate(50px, 0);
+}
+
+.slide-left-leave-active, .slide-right-enter {
+  opacity: 0;
+  -webkit-transform: translate(-50px, 0);
+  transform: translate(-50px, 0);
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+#body .vux-tab{
+  background-color: $theme-gray50-color;
+}
+
+#body .vux-tab .vux-tab-item.vux-tab-selected {
+  color: $theme-red700-color;
+  border-bottom: 3px solid $theme-red700-color;
+}
+
+#body .vux-tab-ink-bar {
+  background-color: $theme-red700-color;
+}
+
+#body .vux-slider > .vux-indicator > a > .vux-icon-dot.active, #body .vux-slider .vux-indicator-right > a > .vux-icon-dot.active {
+  background: $theme-origin600-color;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden
+}

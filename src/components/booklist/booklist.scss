@@ -1,0 +1,110 @@
+@import "../../modules/icon/fonts/iconfont.css";
+@import "../../modules/sass/variables.scss";
+
+
+
+#booklist .weui-cells {
+  background: $theme-gray50-color;
+}
+
+#booklist .weui-cells:before {
+  display: none;
+}
+
+#booklist .weui-cells:after {
+  left: 10px;
+  right: 10px;
+}
+
+#booklist {
+  .content {
+    background: $theme-gray50-color;
+    .left-book {
+      width: 105px;
+      vertical-align: top;
+      margin-left: 5px;
+      margin-right: 5px;
+      position: absolute;
+      max-width: 100px;
+      max-height: 130px;
+      margin: 0 auto;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-left: 10px;
+      img {
+        max-width: 105px;
+      }
+    }
+    .right-book {
+      font-size: 17px;
+      margin-left: 120px;
+      .title{
+        font-size: 17px;
+        color: $theme-gray800-color;
+      }
+    }
+  }
+  li {
+    & > div {
+      position: relative;
+    }
+    .weui-cells {
+      padding-top: 14px;
+      min-height: 145px;
+      .author {
+        font-size: 15px;
+        padding-right: 7px;
+        color: $theme-gray600-color;
+      }
+      .content {
+        //text-indent: 1em;
+        text-indent: 0em;
+        font-size: 14px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+      .status {
+        color: #d32f2f;
+        font-size: 14px;
+        position: absolute;
+        top: 41px;
+        right: 13px;
+      }
+      .buttons {
+        position: absolute;
+        top: 100px
+      }
+    }
+    & .weui-cells {
+      margin-top: 0;
+    }
+    & .weui-cells > div {
+      display: inline-block;
+      .weui-btn {
+        margin-top: 15px;
+        margin-right: 7px;
+        background: $theme-red700-color;
+      }
+      .weui-btn + .weui-btn {
+        color: $theme-red700-color;
+        background: $theme-gray50-color;
+      }
+    }
+  }
+}
+
+#booklist .rotate {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+#booklist .pullup-arrow {
+  display: block;
+  transition: all linear 0.2s;
+  -webkit-transition: all linear 0.2s;
+  color: #666;
+  font-size: 25px;
+}
+

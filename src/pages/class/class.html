@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>分类</title>
+</head>
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+<body>
+<div id="body" style="height: 100%" v-cloak>
+  <view-box ref="viewBox" body-padding-bottom="55px">
+    <!--<myhead></myhead>-->
+
+
+    <!-- <swiper :aspect-ratio="300/800" :list="bannerList" dots-position="center" auto
+             loop></swiper>-->
+
+
+    <div style="height: 190px;background-color: #FAFAFA;">
+      <ul>
+
+        <li >
+          <div class="box1-item">
+            <div class="iconWapper"><i class="iconfont icon-jieyueguanli"></i></div>
+            <p>启蒙(2-6岁)</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="box1-item">
+            <div class="iconWapper"><i class="iconfont icon-jieyuejilu"></i></div>
+            <p>启蒙(7-12岁)</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="box1-item">
+            <div class="iconWapper"><i class="iconfont icon-shoucang"></i></div>
+            <p>思辨(12岁以上)</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="box1-item">
+            <div class="iconWapper"><i class="iconfont icon-qiuyi"></i></div>
+            <p>其他</p>
+          </div>
+        </li>
+
+        <li>
+            <div class="box1-item">
+                <a href="./borrow_bank.html">
+                  <div class="iconWapper">
+                    <i class="iconfont icon-qiuyi"></i>
+                  </div>
+                  <p>借阅排名</p>
+                </a>
+              </div>
+        </li>
+
+        <li>
+          <div class="box1-item">
+            <div class="iconWapper"><i class="iconfont icon-huodong"></i></div>
+            <p>精彩活动</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="box1-item">
+            <div class="iconWapper"><i class="iconfont icon-tuijian"></i></div>
+            <p>新书推荐</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="box1-item">
+            <a href="./register.html">
+              <div class="iconWapper"><i class="iconfont icon-huiyuan1"></i></div>
+              <p>成为会员</p>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <div style="height:44px;">
+        <ul class="bookClass">
+          
+          <li v-if='index==0' class="selected" v-for="(item,index) in categoriesList" @click="show(index)">{{item.name}}</li>
+          <li v-if='index!=0'  v-for="(item,index) in categoriesList" @click="show(index)">{{item.name}}</li>
+          <!-- <li @click="show(1)">分类2</li>
+          <li @click="show(2)">分类3</li>
+          <li @click="show(3)">分类4</li>
+          <li @click="show(4)">分类5</li>
+          <li @click="show(5)">分类6</li>
+          <li @click="show(6)">分类7</li>
+          <li @click="show(7)">分类8</li> -->
+        </ul>
+      </div>
+
+      
+
+
+
+      
+      <div v-for="(item,index) in bookList">
+        <transition :name="transitionName">
+          <div v-show="listIndex==index" class="bookList">
+            <flexbox wrap="wrap" :gutter="0" align="flex-start">
+              <flexbox-item v-for="(item1,index1) in item" :span="1/3">
+                <div class="book">
+                    <div @click='goDetail(item1.id)'>
+                      <div><img :src="item1.cover" alt="" onerror="this.src='/static/book.jpg'" alt=""></div>
+                      <div class="detail">
+                        <p class="title">{{item1.name}}</p>
+                        <p class="author">作者:{{item1.author}}</p>
+                      </div>
+                    </div>
+                  </div>
+              </flexbox-item>
+            </flexbox>
+          </div>
+        </transition>
+      </div>
+
+     
+
+
+    </div>
+
+
+  </view-box>
+  <foot :index="2"></foot>
+
+</div>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,119 @@
+@import "../../modules/icon/fonts/iconfont.css";
+@import "../../modules/sass/variables.scss";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: $theme-gray200-color;
+}
+
+#body .weui-cells {
+  margin-top: 0;
+}
+
+#body {
+  .content {
+    background: #fff;
+    .cover {
+      max-width: 145px;
+      margin: 0 auto;
+      max-height: 150px;
+      overflow: hidden;
+      img {
+        max-width: 150px;
+        max-height: 150px;
+      }
+    }
+    .details {
+      margin: 0 auto;
+      max-width: 145px;
+      p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 145px;
+      }
+      .borrow {
+        font-size: 14px;
+        .number {
+          color: #f39800;
+        }
+
+        .proess {
+          width: 15px;
+          background: #ccc;
+          height: 10px;
+          display: inline-block;
+          border-radius: 2px;
+        }
+
+      }
+    }
+  }
+  li {
+    & > div {
+      position: relative;
+    }
+    .weui-cells {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      min-height: 150px;
+      .author {
+        font-size: 14px;
+        padding-right: 7px;
+        color: $theme-gray600-color;
+      }
+      .content {
+        text-indent: 1em;
+        font-size: 14px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+      .buttons {
+        position: absolute;
+        top: 110px
+      }
+    }
+    &:nth-child(1) .weui-cells {
+      margin-top: 0;
+    }
+    & .weui-cells > div {
+      display: inline-block;
+      .weui-btn {
+        margin-right: 7px;
+      }
+    }
+  }
+}
+
+#body .rotate {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+
+#body .pullup-arrow {
+  display: block;
+  transition: all linear 0.2s;
+  -webkit-transition: all linear 0.2s;
+  color: #666;
+  font-size: 25px;
+}
+
+#body .weui-cell .weui-cell__ft .weui-btn {
+  display: inline-block;
+  width: 90px;
+  font-size: 13px;
+  padding: 0;
+  line-height: 2;
+  margin-top: 0;
+  background-color: $theme-red700-color;
+  color: #fff;
+}
+
+#body .weui-cell .weui-cell__ft .weui-btn+.weui-btn{
+  background-color: #fff;
+  color:  $theme-red700-color;
+}
+

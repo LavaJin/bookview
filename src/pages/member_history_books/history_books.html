@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>历史借书</title>
+</head>
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+<body>
+<div id="body" v-cloak>
+  <!--<myhead slot="header" title="历史借书" :showsearch=true style="position:fixed;width: 100%;z-index:1;top:0"></myhead>-->
+
+  <group class="mycell">
+    <cell>
+      <span slot="title">历史借书</span>
+      <span slot="default">  <x-button mini @click.native="showDate('start')"><span slot="default" v-text="startDate"></span></x-button>
+        <x-button mini primary @click.native="showDate('end')"><span slot="default" v-text="endDate"></span></x-button></span>
+    </cell>
+  </group>
+
+  <booklist :sort="'collection_books'"></booklist>
+
+
+  <foot :index="4"></foot>
+
+
+</div>
+</body>
+
+</html>
+
+

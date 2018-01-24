@@ -1,4 +1,4 @@
-var rapHost = "'http://rap.taobao.org/mockjsdata/16487'"
+var rapHost = "'http://www.5chelib.com/storage'"
 
 module.exports = {
   rapHost: rapHost

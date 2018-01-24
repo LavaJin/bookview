@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>登录</title>
 </head>
@@ -14,38 +13,24 @@
     display: none;
   }
 </style>
+
 <body>
-<div id="body" v-cloak>
-
-
-  <div class="title"><img src="./static/happy_to_read.png" alt=""></div>
-
-  <div class="form">
-    <group>
-      <x-input class="border-1px" placeholder="用户名"></x-input>
-      <x-input class="border-1px" placeholder="手机号码"></x-input>
-      <x-input class="border-1px" placeholder="孩子出生年月日"></x-input>
-      <x-input class="border-1px" placeholder="孩子性别"></x-input>
-      <x-input class="border-1px" placeholder="阅读偏好"></x-input>
-      <x-input class="border-1px" placeholder="设置密码"></x-input>
-      <x-input class="border-1px" placeholder="地址"></x-input>
-      <x-input class="border-1px" placeholder="选择站点"></x-input>
-    </group>
-
-    <p>注册成功后可获得 <span class="strong">1</span>次免费借书机会，<span class="strong">3本1个</span>星期。 </p>
-
-    <div class="check">
-      <check-icon :value.sync="demo2" > 我同意隐私协议和服务声明</check-icon>
+  <div id="body" v-cloak>
+    <div class="title"><img src="./static/happy_to_read.png" alt=""></div>
+    <div style='text-align:center'>
     </div>
-
-    <x-button >支付押金</x-button>
-
+    <div class="form">
+      <group>
+        <x-input v-model="tel" :is-type="checkTel" type="tel" class="border-1px" placeholder="手机号"></x-input>
+        <x-input v-model="passWord" :min="6" :max="12" :is-type="checkPW" type="password" class="border-1px" placeholder="密码">
+          <!-- <span slot="right">显示密码</span> -->
+        </x-input>
+      </group>
+      <div class='buttonWrapper'>
+        <x-button type="primary" :disabled='isDisabled' @click.native='login'>登录</x-button>
+      </div>
+    </div>
   </div>
-
-
-</div>
 </body>
 
 </html>
-
-

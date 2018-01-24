@@ -3,6 +3,67 @@
 
 
 #head .vux-search-box{
-  position:absolute;
-  top:0;
+  position:static;
+}
+
+#head .weui-search-bar{
+  background: $theme-gray600-color;
+}
+
+#head .vux-search-fixed{
+  position: static;
+  left:auto;
+  z-index: 0;
+}
+
+#head .weui-search-bar{
+  display: block;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#head  .down-arrow:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #fff;
+  border-width: 1px 0 0 1px;
+  -webkit-transform: rotate(225deg);
+  transform: rotate(225deg);
+  top: -3px;
+  left: 1px;
+}
+
+#head .main{
+  position: static;
+  font-size: 0;
+  background: $theme-gray600-color;
+  height: 44px;
+  >div{
+    display: inline-block;
+    font-size: 16px;
+  }
+  .address{
+    width: 15%;
+    font-size: 13px;
+    text-align: center;
+    color: #fff;
+    span{
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      position: relative;
+    }
+  }
+  .button{
+    width: 15%;
+    font-size: 13px;
+    text-align: center;
+    line-height: 3;
+    color: $theme-red700-color;
+  }
+  .vux-search-box{
+    width: 70%;
+  }
 }

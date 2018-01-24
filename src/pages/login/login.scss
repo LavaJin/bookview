@@ -4,30 +4,46 @@
 html, body {
   height: 100%;
   width: 100%;
-  background: $theme-gray200-color;
+  background: $theme-gray50-color;
 }
 
 #body {
   background-image: url(./imgs/login-bg.png);
   background-size: cover;
+  height: 100vh;
 }
 
 #body .title {
   text-align: center;
+  img{
+    width: 70%;
+    padding-top: 10px;
+  }
+}
+
+#body .address .weui-label{
+  display: none!important;
 }
 
 #body .form {
-  width: 440px;
-  background: #fff;
   margin: 0 auto;
-  border-radius: 6px;
-  padding-top: 32px;
   padding-left: 30px;
   padding-right: 30px;
+  &>div{
+    .weui-cells{
+      background: $theme-gray50-color;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+  }
   .border-1px {
     border: 1px solid #dcdcdc;
     border-radius: 6px;
-    margin-bottom: 14px;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
   }
   .weui-cell {
     &:before,
@@ -42,6 +58,10 @@ html, body {
       display: none;
     }
   }
+  .detail{
+    font-size: 12px;
+    line-height: 2;
+  }
 
   p {
     text-align: center;
@@ -51,9 +71,14 @@ html, body {
   }
   .check {
     text-align: center;
+    font-size: 12px;
+    line-height: 3;
   }
 
+
+
 }
+
 
 
 

@@ -1,5 +1,5 @@
 import 'vux/src/styles/reset.less';
-import './recommended_books.scss'
+import './return_books.scss'
 import {
   Badge,
   Group,
@@ -21,6 +21,7 @@ import Myhead from 'components/head/head.vue'
 import Top from 'components/top/top.vue'
 // import Search from 'components/search/search.vue'
 import Foot from 'components/foot/foot.vue'
+import Booklist from 'components/booklist/booklist.vue'
 
 import mixin from 'js/mixin.js'
 
@@ -117,7 +118,8 @@ new Vue({
     Panel,
     XButton,
     Scroller,
-    Cell
+    Cell,
+    Booklist
   },
   mixins: [mixin]
 })

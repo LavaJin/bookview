@@ -4,24 +4,47 @@
 html, body {
   height: 100%;
   width: 100%;
-  background: $theme-gray200-color;
+  background: $theme-gray50-color;
+}
+
+#body .vux-header {
+  background: $theme-gray50-color;
+}
+
+#body .weui-cells {
+  background: $theme-gray50-color;
+}
+
+#body .weui-cells:before {
+  display: none;
+}
+
+#body .weui-cells:after {
+  left: 10px;
+  right: 10px;
 }
 
 #body {
   .content {
+    background: $theme-gray50-color;
     .left-book {
-      border: 1px solid $theme-gray200-color;
       width: 105px;
       vertical-align: top;
       margin-left: 5px;
       margin-right: 5px;
       position: absolute;
+      max-width: 100px;
+      max-height: 130px;
+      margin: 0 auto;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-left: 10px;
       img {
         max-width: 105px;
       }
     }
     .right-book {
-      padding-top: 6px;
+      font-size: 17px;
       margin-left: 120px;
     }
   }
@@ -30,11 +53,10 @@ html, body {
       position: relative;
     }
     .weui-cells {
-      padding-top: 15px;
-      padding-bottom: 10px;
-      min-height: 150px;
+      padding-top: 14px;
+      min-height: 145px;
       .author {
-        font-size: 14px;
+        font-size: 15px;
         padding-right: 7px;
         color: $theme-gray600-color;
       }
@@ -46,15 +68,30 @@ html, body {
         -webkit-line-clamp: 2;
         overflow: hidden;
       }
+      .status {
+        color: #d32f2f;
+        font-size: 14px;
+        position: absolute;
+        top: 41px;
+        right: 13px;
+      }
       .buttons {
         position: absolute;
-        top: 110px
+        top: 100px
       }
+    }
+    & .weui-cells {
+      margin-top: 0;
     }
     & .weui-cells > div {
       display: inline-block;
       .weui-btn {
         margin-right: 7px;
+        background: $theme-red700-color;
+      }
+      .weui-btn + .weui-btn {
+        color: $theme-red700-color;
+        background: $theme-gray50-color;
       }
     }
   }

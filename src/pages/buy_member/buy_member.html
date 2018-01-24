@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>购买会员</title>
+</head>
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+
+<body>
+  <div id="body" style="height: 100%" v-cloak>
+    <view-box ref="viewBox" body-padding-bottom="55px">
+      <!--<myhead slot="header" title="购买会员" :showsearch=true style="position:fixed;width: 100%;z-index:1"></myhead>-->
+
+      <div class="content">
+        <div style="height:44px;">
+          <sticky ref="sticky" :offset="46" :check-sticky-support="false">
+            <tab :line-width="1">
+              <tab-item selected @click.native="show(0)">会员</span>
+              </tab-item>
+              <tab-item @click.native="show(1)">课程</tab-item>
+            </tab>
+          </sticky>
+        </div>
+
+        <div>
+          <transition :name="transitionName">
+            <div v-show="listIndex==0" class="list">
+              <ul>
+
+
+                <li v-for='(item,index) in vipList' class="clearfix">
+                  <div class="main">
+                    <div class="mainContainer">
+                      <h4 v-text='item.name'></h4>
+                      <p>可借书一年，每周最多3本总送免费活动20次</p>
+                    </div>
+                  </div>
+                  <div class="left">
+                    <div class="leftContainer inner">
+                      <img :src="item.icon" alt="" onerror="this.src='./static/vip.png'">
+                    </div>
+                  </div>
+                  <div class="right">
+                    <div class="rightContainer inner">
+                      <h4>¥{{item.price}}</h4>
+                      <x-button mini>购买</x-button>
+                    </div>
+                  </div>
+                </li>
+<!-- 
+                <li class="clearfix">
+                  <div class="main">
+                    <div class="mainContainer">
+                      <h4>季度会员</h4>
+                      <p>可借书一年，每周最多3本总送免费活动20次</p>
+                    </div>
+                  </div>
+                  <div class="left">
+                    <div class="leftContainer inner">
+                      <img src="./static/silver_medal.png" alt="">
+                    </div>
+                  </div>
+                  <div class="right">
+                    <div class="rightContainer inner">
+                      <h4>¥90</h4>
+                      <x-button mini>购买</x-button>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="clearfix">
+                  <div class="main">
+                    <div class="mainContainer">
+                      <h4>年度会员</h4>
+                      <p>可借书一年，每周最多3本总送免费活动20次</p>
+                    </div>
+                  </div>
+                  <div class="left">
+                    <div class="leftContainer inner">
+                      <img src="./static/gold_medal.png" alt="">
+                    </div>
+                  </div>
+                  <div class="right">
+                    <div class="rightContainer inner">
+                      <h4>¥365</h4>
+                      <x-button mini>购买</x-button>
+                    </div>
+                  </div>
+                </li>
+
+
+                <li class="clearfix">
+                  <div class="main">
+                    <div class="mainContainer">
+                      <h4>超级vip</h4>
+                      <p>可借书一年，每周最多3本总送免费活动20次</p>
+                    </div>
+                  </div>
+                  <div class="left">
+                    <div class="leftContainer inner">
+                      <img src="./static/vip.png" alt="">
+                    </div>
+                  </div>
+                  <div class="right">
+                    <div class="rightContainer inner">
+                      <h4>¥2000</h4>
+                      <x-button mini>购买</x-button>
+                    </div>
+                  </div>
+                </li> -->
+              </ul>
+              </flexbox>
+            </div>
+          </transition>
+        </div>
+
+        <div>
+          <transition :name="transitionName">
+            <div v-show="listIndex==1" class="bookList">
+              <flexbox wrap="wrap" :gutter="0" align="flex-start">
+                <flexbox-item :span="1/3">
+                  <div class="book">
+                    <div>
+                      <div>
+                        <img src="/static/book.jpg" alt="">
+                      </div>
+                      <div class="detail">
+                        <p class="title">2画报2017年大撒</p>
+                        <p class="author">作者:金波</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </flexbox-item>
+
+                <flexbox-item :span="1/3">
+                  <div class="book">
+                    <div>
+                      <div>
+                        <img src="/static/book.jpg" alt="">
+                      </div>
+                      <div class="detail">
+                        <p class="title">婴儿画报2017年大撒</p>
+                        <p class="author">作者:金波</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </flexbox-item>
+
+                <flexbox-item :span="1/3">
+                  <div class="book">
+                    <div>
+                      <div>
+                        <img src="/static/book.jpg" alt="">
+                      </div>
+                      <div class="detail">
+                        <p class="title">婴儿画报2017年大撒</p>
+                        <p class="author">作者:金波</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </flexbox-item>
+
+                <flexbox-item :span="1/3">
+                  <div class="book">
+                    <div>
+                      <div>
+                        <img src="/static/book.jpg" alt="">
+                      </div>
+                      <div class="detail">
+                        <p class="title">婴儿画报2017年大撒</p>
+                        <p class="author">作者:金波</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </flexbox-item>
+
+                <flexbox-item :span="1/3">
+                  <div class="book">
+                    <div>
+                      <div>
+                        <img src="/static/book.jpg" alt="">
+                      </div>
+                      <div class="detail">
+                        <p class="title">婴儿画报2017年大撒</p>
+                        <p class="author">作者:金波</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </flexbox-item>
+
+                <flexbox-item :span="1/3">
+                  <div class="book">
+                    <div>
+                      <div>
+                        <img src="/static/book.jpg" alt="">
+                      </div>
+                      <div class="detail">
+                        <p class="title">婴儿画报2017年大撒</p>
+                        <p class="author">作者:金波</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </flexbox-item>
+
+
+              </flexbox>
+            </div>
+          </transition>
+        </div>
+
+
+      </div>
+
+    </view-box>
+    <foot :index="1"></foot>
+
+  </div>
+
+</body>
+
+</html>

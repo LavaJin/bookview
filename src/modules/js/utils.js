@@ -23,7 +23,24 @@ class Utils {
    */
   static getQuery(key = undefined) {
     let arr = location.search.substr(1).split('&')
-    return this.arrToObj(key,arr)
+    return this.arrToObj(key, arr)
+  }
+
+   /**
+   * 获取路径上的参数值
+   * var router = '/user/:name/:age';
+   * var path = '/user/abc/def';
+   */
+  static getPath(router, path) {
+    var routerArr = router.split('/');
+    var pathArr = path.split('/');
+    var obj = {};
+    for (var i = 0; i < routerArr.length; i++) {
+      var item = routerArr[i];
+      if (item[0] === ':') {
+        obj[item.slice(1)] = pathArr[i];
+      }
+    }
   }
 
   /*
@@ -33,11 +50,15 @@ class Utils {
    */
   static getCookie(cname) {
     let arr = document.cookie.split(';')
-    return this.arrToObj(cname,arr)
+    return this.arrToObj(cname, arr)
+  }
+
+  static isLogin() {
+    return (this.getCookie('token') ? true : false)
   }
 
 
-  static arrToObj(key,arr) {
+  static arrToObj(key, arr) {
     let data = {}
     arr.forEach((item) => {
       let cur = item.split('=')

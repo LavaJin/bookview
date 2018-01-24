@@ -1,4 +1,5 @@
 module.exports = {
-        host: ''
-        // host: 'http://rap.taobao.org/mockjsdata/16487'
-      }
+  host: 'http://www.5chelib.com/',
+  hostImg: 'http://www.5chelib.com/storage/'
+  // host: '111'
+}

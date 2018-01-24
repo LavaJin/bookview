@@ -1,0 +1,93 @@
+@import "../../modules/icon/fonts/iconfont.css";
+@import "../../modules/sass/variables.scss";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: $theme-gray50-color;
+}
+
+#body {
+  background-image: url(./imgs/login-bg.png);
+  background-size: cover;
+}
+
+#body .title {
+  text-align: center;
+  img{
+    width: 70%;
+    padding-top: 10px;
+  }
+}
+
+#body .address .weui-label{
+  display: none!important;
+}
+
+#body .form {
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  &>div{
+    .weui-cells{
+      border-radius: 6px;
+      margin-top: 0px;
+    }
+  }
+  .border-1px {
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+  }
+  .weui-cell {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+
+  .weui-cells {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+  .detail{
+    font-size: 12px;
+    line-height: 2;
+  }
+
+  p {
+    text-align: center;
+    .strong {
+      color: #f59a19;
+    }
+  }
+  .check {
+    text-align: center;
+    font-size: 12px;
+    line-height: 3;
+  }
+
+  .weui-btn{
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+}
+
+body .vux-cell-box::before{
+  display: none
+}
+
+
+body .require{
+  color: $theme-red700-color;
+  position: relative;
+  top:4px
+}
+
