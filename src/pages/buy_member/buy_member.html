@@ -39,8 +39,8 @@
                 <li v-for='(item,index) in vipList' class="clearfix">
                   <div class="main">
                     <div class="mainContainer">
-                      <h4 v-text='item.name'></h4>
-                      <p>可借书一年，每周最多3本总送免费活动20次</p>
+                      <h4>{{item.name}}<span class="deadline" v-if='item.type==1'>（期限:{{item.day}}天）</span> <span class="deadline" v-if='item.type==2'>（无期限）</span> </h4>
+                      <p>可借书一年，每周最多3本总送免费活动20次  </p>
                     </div>
                   </div>
                   <div class="left">
@@ -51,7 +51,7 @@
                   <div class="right">
                     <div class="rightContainer inner">
                       <h4>¥{{item.price}}</h4>
-                      <x-button mini>购买</x-button>
+                      <x-button mini @click.native='buyMember(item.id)'>购买</x-button>
                     </div>
                   </div>
                 </li>

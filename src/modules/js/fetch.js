@@ -17,6 +17,11 @@ function fetch(type = 'get', url, data = null, config = null) {
    // let defaultConfig = {
    //   headers: { 'Authorization': 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vd3d3LjVjaGVsaWIuY29tL2FwaS9sb2dpbiIsImlhdCI6MTUxNjQ1NzYwNSwiZXhwIjoxNTE3MDYyNDA1LCJuYmYiOjE1MTY0NTc2MDUsImp0aSI6Inp6dVFYTkpweG9EOUR4UnYiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.3hoGEMUH4qbSMiGSMa9CBgbAgM1KoAM_AbtE2RYKQXw' }
    // }
+
+    if(type=='post'&&data.headers){
+      axios.defaults.headers.common['Authorization'] = data.headers.Authorization;
+    }
+   
     //axios.defaults.headers={ 'Authorization': 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vd3d3LjVjaGVsaWIuY29tL2FwaS9sb2dpbiIsImlhdCI6MTUxNjQ1NzYwNSwiZXhwIjoxNTE3MDYyNDA1LCJuYmYiOjE1MTY0NTc2MDUsImp0aSI6Inp6dVFYTkpweG9EOUR4UnYiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.3hoGEMUH4qbSMiGSMa9CBgbAgM1KoAM_AbtE2RYKQXw' }
     axios.defaults.validateStatus = function (status) {
       return status >= 200 && status <= 500; //默认

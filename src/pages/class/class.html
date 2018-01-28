@@ -116,21 +116,34 @@
         <transition :name="transitionName">
           <div v-show="listIndex==index" class="bookList">
             <flexbox wrap="wrap" :gutter="0" align="flex-start">
-              <flexbox-item v-for="(item1,index1) in item" :span="1/3">
-                <div class="book">
-                    <div @click='goDetail(item1.id)'>
-                      <div><img :src="item1.cover" alt="" onerror="this.src='/static/book.jpg'" alt=""></div>
-                      <div class="detail">
-                        <p class="title">{{item1.name}}</p>
-                        <p class="author">作者:{{item1.author}}</p>
+              
+                <flexbox-item v-if='item.length!=0' v-for="(item1,index1) in item" :span="1/3">
+                  <div class="book">
+                    <a href="javascript:" @click='goDetail(item1.id)'>
+                      <div class="bookWrapper">
+                        <div>
+                          <img :src="item1.cover" alt="" onerror="this.src='/static/book.jpg'">
+                        </div>
+                        <div class="detail">
+                          <p class="title">{{item1.name}}</p>
+                          <p class="author">作者:{{item1.author}}</p>
+                        </div>
                       </div>
-                    </div>
+                    </a>
                   </div>
-              </flexbox-item>
+                </flexbox-item>
+          
+                <div class="nofund" v-if='item.length==0'>
+                    <p>该栏目暂没有图书</p>
+                </div>
+
+
             </flexbox>
           </div>
         </transition>
       </div>
+
+
 
      
 

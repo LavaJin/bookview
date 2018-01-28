@@ -9,7 +9,7 @@ html, body {
 }
 
 #body {
-  background: #fff;
+  background: $theme-gray50-color;
 }
 
 #body .xs-container {
@@ -40,22 +40,31 @@ html, body {
     padding-left: 10px;
     padding-right: 10px;
     background: $theme-gray50-color;
-    transition: all .8s cubic-bezier(.55, 0, .1, 1);
-    .book {
-      margin-top: 10px;
+    transition: all 0s cubic-bezier(.55, 0, .1, 1);
+      .book {
+        margin-top: 10px;
+      }
+      .book .bookWrapper > div {
+        max-width: 100px;
+        max-height: 130px;
+        margin: 0 auto;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      img {
+        max-width: 100px;
+        min-height: 130px
+      }
     }
-    .book > div > div {
-      max-width: 100px;
-      max-height: 130px;
-      margin: 0 auto;
-      border-radius: 6px;
-      overflow: hidden;
+    .nofund{
+      width: 100%;
+      text-align: center;
+      p{
+        padding-top: 30px;
+        font-size: 14px;
+        color: $theme-gray800-color;
+      }
     }
-    img {
-      max-width: 100px;
-      min-height: 130px
-    }
-  }
 }
 
 #body .box1 {

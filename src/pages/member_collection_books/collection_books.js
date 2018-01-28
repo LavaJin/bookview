@@ -10,11 +10,18 @@ import {
   Spinner,
 } from 'vux'
 
-import {fetch, rap} from 'js/fetch.js'
+import utils from 'js/utils.js'
+
+import { cookie } from 'vux'
+
+import { fetch, rap } from 'js/fetch.js'
+
 let url = {
-  list: '/merchandiseHot/list.do',
-  slideList: '/slide/listSlides.do'
+  getCollectionBook: 'api/book/collects',//收藏列表
+  getCollectionNumber: 'api/book/collect/count',//收藏统计
+  postCollectBook:'api/books'
 }
+
 url = rap(url)
 import Myhead from 'components/head/head.vue'
 // import Slide from 'components/slide/slide.vue'
@@ -28,50 +35,10 @@ import mixin from 'js/mixin.js'
 new Vue({
   el: '#body',
   data: {
+    token:'',
+    count:0,
     showList1: true,
-    bookList: [
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
-      }, {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
-      },
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
-      },
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
-      },
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
-      },
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
-      }
-    ],
+    bookList: [],
     scrollTop: 0,
     onFetching: false,
     bottomCount: 20,
@@ -81,12 +48,15 @@ new Vue({
     }
   },
   created() {
-    if(cookie.get('token')){
-
-    }else{
-      
+    this.isLogin = utils.isLogin()
+    //没有登录去登录
+    if (!this.isLogin) {
+      window.location.href = './login.html'
+    } else {
+      this.token = cookie.get('token')
+      this.getCollectionNumber()
+      this.getCollectionBook()
     }
-    
   },
   methods: {
     load4 () {
@@ -113,6 +83,60 @@ new Vue({
         this.transitionName = 'slide-left'
       }
       this.listIndex = index
+    },
+    getCollectionNumber(){
+      //收藏统计
+      fetch('get', url.getCollectionNumber, { null: null, headers: { 'Authorization': this.token } }).then(res => {
+        if (res.status >= 200 && res.status <= 300) {
+          this.count=res.data.count
+        } else if(res.status ==401){
+          cookie.remove('token')
+          window.location.href='./login.html'
+        }else {
+          this.$vux.toast.show({
+            text: res.data.message,
+            type: 'warn',
+            onShow() {
+              //console.log('Plugin: I\'m showing')
+            },
+            onHide() {
+              //console.log('Plugin: I\'m hiding')
+            }
+          })
+        }
+      })
+    },
+    getCollectionBook(){
+      //收藏图书列表
+      fetch('get', url.getCollectionBook, { null: null, headers: { 'Authorization': this.token } }).then(res => {
+        if (res.status >= 200 && res.status <= 300) {
+          this.bookList=res.data
+          // res.data=[{
+          //     "id":1,//收藏id
+          //     "name":"拍黄片",//图书名称
+          //     "cover":"book/gRWexYxbrJBe7C1iOjmx8L7cshWVvaM88qLtdrmr.jpeg",//图书封面
+          //     "author":"huhao",//作者
+          //     "borrow_count":0,//借阅统计
+          //     "detail":"<p>二月也<br/></p>"//图书详情
+          //   }
+          // ]
+          //mock
+          this.$set(this, 'bookList', res.data);
+          //console.log(this.bookList)
+
+        }else {
+          this.$vux.toast.show({
+            text: res.data.message,
+            type: 'warn',
+            onShow() {
+              //console.log('Plugin: I\'m showing')
+            },
+            onHide() {
+              //console.log('Plugin: I\'m hiding')
+            }
+          })
+        }
+      })
     }
   },
   components: {

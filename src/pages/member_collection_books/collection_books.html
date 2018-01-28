@@ -19,11 +19,11 @@
   <!--<myhead slot="header" title="" :showsearch=true style="position:fixed;width: 100%;z-index:1"></myhead>-->
   <group class="mycell">
     <cell>
-      <span slot="title">当前收藏图书：<span class="number">10</span>本</span>
+      <span slot="title">当前收藏图书：<span class="number">{{count}}</span>本</span>
     </cell>
   </group>
 
-  <booklist :data=bookList :sort="'collection_books'"></booklist>
+  <booklist :list='bookList' :sort="'collection_books'" :token='token'></booklist>
 
 
 

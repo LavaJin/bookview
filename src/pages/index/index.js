@@ -30,20 +30,15 @@ new Vue({
     listIndex: 0,
     transitionName: 'slide-left',
     isLogin: '',
-    bookList: []
+    bookList: [],
+    mylist:[] //临时存放
   },
   created() {
-    // cookie.set('token', 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vd3d3LjVjaGVsaWIuY29tL2FwaS9yZWdpc3RlciIsImlhdCI6MTUxNjAyNTc0NSwiZXhwIjoxNTE2NjMwNTQ1LCJuYmYiOjE1MTYwMjU3NDUsImp0aSI6InFjSm9QS3diZjM5V0hFWVkiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.hn1dRgujJZcpxThnYPbOvSeukVrXTajMcF3EzhydMoA')
-    // console.log('---')
-    // console.log(cookie.get('token'))
-    //cookie.remove('token')
     this.isLogin = utils.isLogin()
     this.getADList()
     this.getCategories()
-    //this.haha()
   },
   mounted() {
-    //console.log(utils.isLogin())
   },
   methods: {
     show(index) {
@@ -90,7 +85,7 @@ new Vue({
             //  .then(axios.spread(function (acct, perms) {
                 // Both requests are now complete
             //  }));
-            _this.getbook({ id: item.id })
+            _this.getbook({ category_id: item.id })
           })
         }
       })
@@ -110,7 +105,8 @@ new Vue({
           res.data.forEach((item,index)=>{
             item.cover=`${hostImg}${item.cover}`
           })
-          _this.bookList.push(res.data)
+          _this.mylist[config.category_id-1]=res.data
+          _this.$set(_this, 'bookList', _this.mylist);
         }
 
       })

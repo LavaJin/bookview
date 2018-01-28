@@ -17,13 +17,19 @@ import {
   XButton
 } from 'vux'
 
+
 import { hostImg } from 'js/host-config'
+import { cookie } from 'vux'
+
+import { debounce } from 'vux'
 
 import { fetch, rap } from 'js/fetch.js'
 let url = {
-  getBookDetail: 'api/books',
-  slideList: '/slide/listSlides.do',
-  aa: 'api/ads'
+  getBookDetail: 'api/books',//获取图书详情
+  getCollectCount:'api/book/collect/count',//收藏统计
+  postCollectBook:'api/books'
+
+
 }
 url = rap(url)
 
@@ -43,14 +49,97 @@ new Vue({
     listIndex: 0,
     bookID: 0,
     bookInfo:{},
-    isCollect:false//是否收藏
+    isCollect:false,//是否收藏
+    clock:false
 
   },
   created() {
-    this.bookID = utils.getQuery('id')
-    this.getBookDetail()
+    this.isLogin = utils.isLogin()
+    //没有登录去登录
+    if (!this.isLogin) {
+      window.location.href = './login.html'
+    } else {
+      this.token = cookie.get('token')
+      this.bookID = utils.getQuery('id')
+      this.getBookDetail()
+    }
   },
   methods: {
+    collect:debounce (function(e,id){
+      if(this.clock==true){
+        return
+      }
+      this.clock=true
+      if(e.target.className.indexOf('icon-shoucang1')!=-1){
+        //收藏
+        fetch('post', `${url.postCollectBook}/${id}/collect`, { null: null, headers: { 'Authorization': this.token } }).then(res => {
+          if (res.status >= 200 && res.status <= 300) {
+            e.target.className='iconfont icon-shoucang2'
+            this.bookInfo.like_count>>0
+            this.bookInfo.like_count+=1
+            this.clock=false
+            // this.$vux.toast.show({
+            //   text: '收藏成功',
+            //   type: 'success',
+            //   onShow() {
+            //     //console.log('Plugin: I\'m showing')
+            //   },
+            //   onHide() {
+            //     window.location.href='./member.html'
+            //     //console.log('Plugin: I\'m hiding')
+            //   }
+            // })
+          } else {
+            this.clock=false
+            // this.$vux.toast.show({
+            //   text: res.data.message,
+            //   type: 'warn',
+            //   onShow() {
+            //     //console.log('Plugin: I\'m showing')
+            //   },
+            //   onHide() {
+            //     //console.log('Plugin: I\'m hiding')
+            //   }
+            // })
+          }
+        })
+
+      }else if(e.target.className.indexOf('icon-shoucang2')!=-1){
+        //取消收藏
+        fetch('delete', `${url.postCollectBook}/${id}/uncollect`, { null: null, headers: { 'Authorization': this.token } }).then(res => {
+          if (res.status >= 200 && res.status <= 300) {
+            e.target.className='iconfont icon-shoucang1'
+            this.bookInfo.like_count>>0
+            this.bookInfo.like_count-=1
+            this.clock=false
+            // this.$vux.toast.show({
+            //   text: '收藏成功',
+            //   type: 'success',
+            //   onShow() {
+            //     //console.log('Plugin: I\'m showing')
+            //   },
+            //   onHide() {
+            //     window.location.href='./member.html'
+            //     //console.log('Plugin: I\'m hiding')
+            //   }
+            // })
+          } else {
+            this.clock=false
+            // this.$vux.toast.show({
+            //   text: res.data.message,
+            //   type: 'warn',
+            //   onShow() {
+            //     //console.log('Plugin: I\'m showing')
+            //   },
+            //   onHide() {
+            //     //console.log('Plugin: I\'m hiding')
+            //   }
+            // })
+          }
+        })
+      }
+      
+    }, 500, {}),
     show(index) {
       if (this.listIndex > index) {
         this.transitionName = 'slide-right'

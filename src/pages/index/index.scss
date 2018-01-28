@@ -9,7 +9,7 @@ html, body {
 }
 
 #body {
-  background: #fff;
+  background: $theme-gray50-color;
 }
 
 #body .xs-container {
@@ -22,7 +22,7 @@ html, body {
     padding-left: 10px;
     padding-right: 10px;
     background: $theme-gray50-color;
-    transition: all .8s cubic-bezier(.55, 0, .1, 1);
+    transition: all 0s cubic-bezier(.55, 0, .1, 1);
       .book {
         margin-top: 10px;
       }
@@ -36,6 +36,15 @@ html, body {
       img {
         max-width: 100px;
         min-height: 130px
+      }
+    }
+    .nofund{
+      width: 100%;
+      text-align: center;
+      p{
+        padding-top: 30px;
+        font-size: 14px;
+        color: $theme-gray800-color;
       }
     }
 }

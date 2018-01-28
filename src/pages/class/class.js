@@ -35,7 +35,8 @@ new Vue({
       fallbackImg: 'https://static.vux.li/demo/3.jpg'
     }],
     listIndex: 0,
-    transitionName: 'slide-left'
+    transitionName: 'slide-left',
+    mylist:[] //临时存放
   },
   created() {
     this.getCategories()
@@ -61,7 +62,7 @@ new Vue({
             //  .then(axios.spread(function (acct, perms) {
                 // Both requests are now complete
             //  }));
-            _this.getbook({ id: item.id })
+            _this.getbook({ category_id: item.id })
           })
         }
       })
@@ -78,7 +79,8 @@ new Vue({
           res.data.forEach((item,index)=>{
             item.cover=`${hostImg}${item.cover}`
           })
-          _this.bookList.push(res.data)
+          _this.mylist[config.category_id-1]=res.data
+          _this.$set(_this, 'bookList', _this.mylist);
         }
 
       })

@@ -29,7 +29,7 @@ import { checkphone } from 'js/validate.js'
 import { fetch, rap } from 'js/fetch.js'
 
 let url = {
-  getSites: 'api/sites',
+  getSites: 'api/cities',
   postRegister: 'api/register',
   getAreas:'api/areas'
 }
@@ -189,13 +189,7 @@ new Vue({
       if (boolean) {
         console.log(this.address)
         //获取站点
-        fetch('get', url.getSites, {
-          params: {
-            province_id: this.address[0],
-            city_id: this.address[1],
-            area_id: this.address[2]
-          }
-        }).then(res => {
+        fetch('get', url.getSites+'/'+this.address[1]+'/sites').then(res => {
           if (res.status >= 200 && res.status <= 300) {
             let array = []
             res.data.forEach(element => {

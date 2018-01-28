@@ -32,7 +32,7 @@
                     <span class="status">已领取</span>
                   </p>
                   <p class="content">库存：{{bookInfo.inventory}}本
-                    <i class="iconfont icon-shoucang1"></i>
+                    <i class="iconfont icon-shoucang1" @click='collect($event,bookInfo.id)'></i>
                     <span>{{bookInfo.like_count}}</span>
                     <i class="iconfont icon-comment21"></i>
                     <span>{{bookInfo.collect_count}}</span>
