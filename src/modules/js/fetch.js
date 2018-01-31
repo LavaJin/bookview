@@ -1,5 +1,9 @@
 import axios from 'axios'
 
+import qs from 'qs'
+
+import { cookie } from 'vux'
+
 let host = require('./host-config.js').host
 
 // 开发环节，所有接口走rap数据
@@ -12,31 +16,71 @@ function rap(urlList) {
 }
 
 
-function fetch(type = 'get', url, data = null, config = null) {
-  return new Promise((resolve, reject) => {
-   // let defaultConfig = {
-   //   headers: { 'Authorization': 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vd3d3LjVjaGVsaWIuY29tL2FwaS9sb2dpbiIsImlhdCI6MTUxNjQ1NzYwNSwiZXhwIjoxNTE3MDYyNDA1LCJuYmYiOjE1MTY0NTc2MDUsImp0aSI6Inp6dVFYTkpweG9EOUR4UnYiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.3hoGEMUH4qbSMiGSMa9CBgbAgM1KoAM_AbtE2RYKQXw' }
-   // }
 
-    if(type=='post'&&data.headers){
-      axios.defaults.headers.common['Authorization'] = data.headers.Authorization;
-    }
-   
-    //axios.defaults.headers={ 'Authorization': 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vd3d3LjVjaGVsaWIuY29tL2FwaS9sb2dpbiIsImlhdCI6MTUxNjQ1NzYwNSwiZXhwIjoxNTE3MDYyNDA1LCJuYmYiOjE1MTY0NTc2MDUsImp0aSI6Inp6dVFYTkpweG9EOUR4UnYiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.3hoGEMUH4qbSMiGSMa9CBgbAgM1KoAM_AbtE2RYKQXw' }
+
+function fetch(type = 'get', url, data) {
+  return new Promise((resolve, reject) => {
+
+    //alert(cookie.get('token'))
+    // if (cookie.get('token')) {
+    //   axios.defaults.headers.common = {
+    //     "Accept": "application/json",
+    //     "Authorization": cookie.get('token')
+    //   }
+    // }
+
     axios.defaults.validateStatus = function (status) {
       return status >= 200 && status <= 500; //默认
     }
-   //let newConfig=Object.assign(defaultConfig,config)
+
+    switch (type) {
+      case 'get':
+        axios.get(url, { params: data }).then((response) => {
+          resolve(response)
+        }).catch((error) => {
+          console.log(error)
+          reject({
+            status: -1,
+            message: '系统错误，请稍后重试'
+          })
+        })
+        break;
+      case 'post':
+        axios.post(url, qs.stringify(data)).then((response) => {
+          //alert(1)
+          resolve(response)
+        }).catch((error) => {
+          alert(error.message)
+          console.log(error)
+          reject({
+            status: -1,
+            message: '系统错误，请稍后重试'
+          })
+        })
+        break;
+      default:
+    }
+
+
+
+
+
+
+
+
+    //let newConfig=Object.assign(defaultConfig,config)
     //console.log(newConfig)
-    axios[type](url, data,{}).then((response) => {
-      resolve(response)
-    }).catch((error) => {
-      console.log(error)
-      reject({
-        status: -1,
-        message: '系统错误，请稍后重试'
-      })
-    })
+    //console.log('--')
+    // axios[type](url, data, {}).then((response) => {
+    //   resolve(response)
+    // }).catch((error) => {
+    //   alert('erroe')
+    //   console.log(error)
+    //   reject({
+    //     status: -1,
+    //     message: '系统错误，请稍后重试'
+    //   })
+    // })
   })
 }
 

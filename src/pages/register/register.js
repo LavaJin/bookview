@@ -1,5 +1,5 @@
 import 'vux/src/styles/reset.less';
-import './register.scss'
+import './register.scss';
 import {
   Swiper,
   Scroller,
@@ -17,7 +17,8 @@ import {
   XAddress,
   ChinaAddressV4Data,
   Datetime,
-  ToastPlugin
+  ToastPlugin,
+  Value2nameFilter as value2name
 } from 'vux'
 
 Vue.use(ToastPlugin)
@@ -60,16 +61,20 @@ new Vue({
     siteslist: [],//站点数据
     isCheckTel: false,
     isCheckPW: false,
-    addressData: []
+    addressData: [],
+    addressName:''
   },
   computed: {
     isDisabled() {
+      return false
       //用户名不为空      日期必选          孩子性别必选                 
       if (this.isAgree && this.name != '' && this.birthDay != '' && this.childGender.length != 0 && this.childLike != '' && this.address.length != 0 && this.detailAddress != '' && this.isCheckTel === true && this.isCheckPW === true && this.password != '' && this.phone != '') {
         return false
       } else {
         return true
       }
+
+      
     }
   },
   created() {
@@ -77,6 +82,9 @@ new Vue({
     this.getAreas()
   },
   methods: {
+    getName(ids, names){
+      this.addressName=`${names[0]} ${names[1]} ${names[2]}`
+    },
     getAreas(){
       //获取有站点的省市区
       fetch('get', url.getAreas).then(res => {
@@ -130,7 +138,7 @@ new Vue({
 
             this.addressData.push(obj)
           })
-          console.log(this.addressData)
+          //console.log(this.addressData)
         } else {
           this.$vux.toast.show({
             text: res.data.message,
@@ -140,15 +148,20 @@ new Vue({
       })
     },
     register() {
-      //注册
+      //注册      
       fetch('post', url.postRegister, {
         name: this.name,
         password: this.password,
         phone: this.phone,
         child_gender: this.childGender[0],
-        child_like: this.childLike
+        child_like: this.childLike,
+        address:this.addressName,
+        detail_address:this.detailAddress,
+        site_id:this.sites[0]
       }).then(res => {
+        
         if (res.status >= 200 && res.status <= 300) {
+          
           cookie.set('token', res.data.token)
           this.$vux.toast.show({
             text: '注册成功',
@@ -195,8 +208,8 @@ new Vue({
             res.data.forEach(element => {
               array.push({ name: element.name, value: element.id + '' })
             });
-            console.log(this)
-            console.log(array)
+            
+            
             this.$set(this, 'siteslist', array);
             // this.$vux.toast.show({
             //   text: '登录成功',

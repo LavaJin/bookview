@@ -46,7 +46,7 @@
             <span class="require" slot="label">*</span>
         </x-input>
 
-        <x-address class="border-1px address" title="地址" placeholder="地址" v-model="address" :list="addressData" value-text-align="left"  @on-hide='getSites'>
+        <x-address class="border-1px address" title="地址" placeholder="地址" v-model="address" :list="addressData" value-text-align="left"  @on-hide='getSites' @on-shadow-change="getName">
             <template slot="title" slot-scope="props"><!-- use scope="props" when vue < 2.5.0 -->
               <span slot='title'  class="require" >*</span>
               </span>
@@ -71,7 +71,7 @@
           <check-icon :value.sync="isAgree"> 我同意隐私协议和服务声明</check-icon>
         </div>
 
-        <x-button type="primary"  :disabled=isDisabled @click.native='register'>免费注册</x-button>
+        <x-button type="primary"  :disabled='isDisabled' @click.native='register'>免费注册</x-button>
       </group>
     </div>
   </div>

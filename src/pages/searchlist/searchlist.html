@@ -7,7 +7,7 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>借阅排名</title>
+  <title>搜索</title>
 </head>
 <style>
   [v-cloak] {
@@ -15,22 +15,26 @@
   }
 </style>
 <body>
-<div id="body" v-cloak>
+<div id="body" style="height: 100%" v-cloak>
+  <view-box ref="viewBox" body-padding-bottom="55px">
+   
 
-  <!--<myhead slot="header" title="" :showsearch=true style="position:fixed;width: 100%;z-index:1"></myhead>-->
+    <!-- <group class="mycell">
+      <cell>
+        <span slot="title">当前</span>
+      </cell>
+    </group> -->
+  
+    <booklist :list1='bookList' :sort="type" :token='token'></booklist>
+
+  
 
 
-    <booklist :list='bookList' :sort="'borrow_bank'"></booklist>
-
-
-
-
-
-
-  <foot :index="4"></foot>
-
+  </view-box>
+  <foot :index="2"></foot>
 
 </div>
+
 </body>
 
 </html>

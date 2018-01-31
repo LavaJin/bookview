@@ -5,18 +5,13 @@
       <div class="address">无锡  <span><i class="down-arrow"></i></span> </div>
       <search
         cancel-text=" "
-        @result-click="resultClick"
-        @on-change="getResult"
-        :results="results"
         v-model="value"
         position="static"
         :autoFixed=false
-        @on-focus="onFocus"
-        @on-cancel="onCancel"
-        @on-submit="onSubmit"
+        @on-submit='goSearch'
         ref="search">
       </search>
-      <div class="button">搜索</div>
+      <div @click='goSearch' class="button">搜索</div>
     </div>
   </div>
 </template>

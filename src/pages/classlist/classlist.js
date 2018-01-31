@@ -1,9 +1,11 @@
 import 'vux/src/styles/reset.less';
-import './class.scss'
+import './classlist.scss'
 import {Swiper, Scroller, Tab, TabItem, Sticky, Flexbox, FlexboxItem, ViewBox} from 'vux'
 
 import { hostImg } from 'js/host-config'
 import { fetch, rap } from 'js/fetch.js'
+
+import utils from 'js/utils.js'
 
 let url = {
   getCategories: 'api/book/categories',
@@ -15,6 +17,8 @@ import Myhead from 'components/head/head.vue'
 import Top from 'components/top/top.vue'
 // import Search from 'components/search/search.vue'
 import Foot from 'components/foot/foot.vue'
+
+import Booklist from 'components/booklist/booklist.vue'
 
 import mixin from 'js/mixin.js'
 
@@ -36,20 +40,27 @@ new Vue({
     }],
     listIndex: 0,
     transitionName: 'slide-left',
-    mylist:[] //临时存放
+    mylist:[], //临时存放
+    category_id:0,
+    token:''
   },
   created() {
-    this.getCategories()
+    this.category_id = utils.getQuery('id')
+    //console.log(this.bookID)
+    //this.getCategories()
+    this.getList(this.category_id)
   },
   methods: {
-    goList(id){
-      window.location.href=`./classlist.html?id=${id}`
+    goDetail(id){
+      window.location.href=`./books_detail.html?id=${id}`
     },
     getCategories() {
       //获取首页一级栏目
       let _this = this
       fetch('get', url.getCategories, {
+        params: {
           pid: 0,
+        }
       }).then(res => {
         if (res.status >= 200 && res.status <= 500) {
           this.categoriesList = res.data
@@ -61,25 +72,27 @@ new Vue({
             //  .then(axios.spread(function (acct, perms) {
                 // Both requests are now complete
             //  }));
-            //_this.getbook({ category_id: item.id })
+            _this.getbook({ category_id: item.id })
           })
         }
       })
     },
-    getbook(config = null) {
+    getList(id) {
       //获取图书
       let _this = this
       fetch('get', url.getBooks, {
-        params: config
+          category_id:id
       }).then(res => {
         //this.bookList.psuh(res.data)
         if (res.status >= 200 && res.status <= 500) {
           //this.categoriesList = res.data
           res.data.forEach((item,index)=>{
-            item.cover=`${hostImg}${item.cover}`
+            item.img=`${hostImg}${item.cover}`
           })
-          _this.mylist[config.category_id-1]=res.data
-          _this.$set(_this, 'bookList', _this.mylist);
+          this.bookList=res.data
+          alert(this.bookList)
+          //_this.mylist[config.category_id]=res.data
+          //_this.$set(_this, 'bookList', _this.mylist);
         }
 
       })
@@ -107,7 +120,8 @@ new Vue({
     Sticky,
     Flexbox,
     FlexboxItem,
-    ViewBox
+    ViewBox,
+    Booklist
   },
   mixins: [mixin]
 })

@@ -62,7 +62,12 @@ class Utils {
     let data = {}
     arr.forEach((item) => {
       let cur = item.split('=')
-      data[cur[0].trim()] = cur[1].trim()
+      if(cur[0]==''){
+
+      }else{
+        data[cur[0].trim()] = cur[1].trim()
+      }
+      
     })
     return key ? data[key] : data
   }

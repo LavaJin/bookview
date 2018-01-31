@@ -15,122 +15,321 @@
 
 <body>
   <div id="body" style="height: 100%" v-cloak>
+
+
     <view-box ref="viewBox" body-padding-bottom="55px">
-      <myhead></myhead>
+      <scroller style="top:0px" lock-x scrollbar-y height="-55" ref="scroller" v-model="demo4Value" @on-pullup-loading="load4">
+        <div>
+            <myhead></myhead>
+            <swiper :aspect-ratio="300/800" :list="ADList" dots-position="center" auto loop></swiper>
 
-
-      <swiper :aspect-ratio="300/800" :list="ADList" dots-position="center" auto loop></swiper>
-
-
-      <div style="height: 190px;background-color: #FAFAFA;">
-        <ul>
-          <li>
-            <div class="box1-item">
-              <a href="./had_to_borrow_books.html">
-                <div class="iconWapper">
-                  <i class="iconfont icon-jieyueguanli"></i>
-                </div>
-                <p>我的借阅</p>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class="box1-item">
-              <a href="./reservation_books.html">
-                <div class="iconWapper">
-                  <i class="iconfont icon-jieyuejilu"></i>
-                </div>
-                <p>我的预借</p>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class="box1-item">
-              <a href="./collection_books.html">
-                <div class="iconWapper">
-                  <i class="iconfont icon-shoucang"></i>
-                </div>
-                <p>我的收藏</p>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class="box1-item">
-              <a href="./recommended_books.html">
-                <div class="iconWapper">
-                  <i class="iconfont icon-qiuyi"></i>
-                </div>
-                <p>我想求书</p>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class="box1-item">
-              <a href="./borrow_bank.html">
-                <div class="iconWapper">
-                  <i class="iconfont icon-qiuyi"></i>
-                </div>
-                <p>借阅排名</p>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class="box1-item">
-              <div class="iconWapper">
-                <i class="iconfont icon-huodong"></i>
+            <div style="height: 190px;background-color: #FAFAFA;">
+                <ul>
+                  <li>
+                    <div class="box1-item">
+                      <a href="./had_to_borrow_books.html">
+                        <div class="iconWapper">
+                          <i class="iconfont icon-jieyueguanli"></i>
+                        </div>
+                        <p>我的借阅</p>
+                      </a>
+                    </div>
+                  </li>
+        
+                  <li>
+                    <div class="box1-item">
+                      <a href="./reservation_books.html">
+                        <div class="iconWapper">
+                          <i class="iconfont icon-jieyuejilu"></i>
+                        </div>
+                        <p>我的预借</p>
+                      </a>
+                    </div>
+                  </li>
+        
+                  <li>
+                    <div class="box1-item">
+                      <a href="./collection_books.html">
+                        <div class="iconWapper">
+                          <i class="iconfont icon-shoucang"></i>
+                        </div>
+                        <p>我的收藏</p>
+                      </a>
+                    </div>
+                  </li>
+        
+                  <li>
+                    <div class="box1-item">
+                      <a href="./recommended_books.html">
+                        <div class="iconWapper">
+                          <i class="iconfont icon-qiuyi"></i>
+                        </div>
+                        <p>我想求书</p>
+                      </a>
+                    </div>
+                  </li>
+        
+                  <li>
+                    <div class="box1-item">
+                      <a href="./borrow_bank.html">
+                        <div class="iconWapper">
+                          <i class="iconfont icon-qiuyi"></i>
+                        </div>
+                        <p>借阅排名</p>
+                      </a>
+                    </div>
+                  </li>
+        
+                  <li>
+                    <div class="box1-item">
+                      <div class="iconWapper">
+                        <i class="iconfont icon-huodong"></i>
+                      </div>
+                      <p>精彩活动</p>
+                    </div>
+                  </li>
+        
+                  <li>
+                    <div class="box1-item">
+                      <a href="./recommended_books.html">
+                        <div class="iconWapper">
+                          <i class="iconfont icon-tuijian"></i>
+                        </div>
+                        <p>新书推荐</p>
+                      </a>
+                    </div>
+                  </li>
+        
+                  <li>
+                    <div class="box1-item" @click=goRegister>
+                      <a href="javascript:">
+                        <div class="iconWapper">
+                          <i class="iconfont icon-huiyuan1"></i>
+                        </div>
+                        <p>成为会员</p>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <p>精彩活动</p>
-            </div>
-          </li>
 
-          <li>
-            <div class="box1-item">
-              <a href="./recommended_books.html">
-                <div class="iconWapper">
-                  <i class="iconfont icon-tuijian"></i>
-                </div>
-                <p>新书推荐</p>
-              </a>
-            </div>
-          </li>
 
-          <li>
-            <div class="box1-item" @click=goRegister>
-              <a href="javascript:">
-                <div class="iconWapper">
-                  <i class="iconfont icon-huiyuan1"></i>
+              <div style="height:44px;">
+                  <sticky ref="sticky" :offset="46" :check-sticky-support="false">
+                    <tab :line-width="1">
+        
+                      <tab-item selected >推荐图书
+                      </tab-item>
+      
+                    </tab>
+                  </sticky>
                 </div>
-                <p>成为会员</p>
-              </a>
-            </div>
-          </li>
-        </ul>
-      </div>
+
+
+         <div>
+              <div class="bookList">
+                <flexbox wrap="wrap" :gutter="0" align="flex-start">
+  
+                  <flexbox-item   :span="1/3" v-for="(item,index) in bookList">
+                    <div class="book">
+                      <a href="javascript:" @click='goDetail(item.id)'>
+                        <div class="bookWrapper">
+                          <div>
+                            <img :src="item.cover" alt="" onerror="this.src='/static/book.jpg'">
+                          </div>
+                          <div class="detail">
+                            <p class="title">{{item.name}}</p>
+                            <p class="author">作者:{{item.author}}</p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </flexbox-item>
+  
+                  
+                </flexbox>
+              </div>
+            
+          </div> 
+
+                
+
+              
+
+            
+          <!-- <div slot="pullup" class="xs-plugin-pullup-container xs-plugin-pullup-up" style="position: absolute; width: 100%; height: 50px; bottom: -50px; text-align: center;">
+            <span v-show="demo4Value.pullupStatus === 'default'"></span>
+            <span class="pullup-arrow" v-show="demo4Value.pullupStatus === 'default' || demo4Value.pullupStatus === 'up' || demo4Value.pullupStatus === 'down'"
+              :class="{'rotate': demo4Value.pullupStatus === 'down'}">↑</span>
+            <span v-show="demo4Value.pullupStatus === 'loading'">
+              <spinner type="ios-small"></spinner>
+            </span>
+          </div> -->
+
+
+        </div>
+      </scroller>
+      <foot :index="1"></foot>
+    </view-box>
+
+    <!-- <view-box ref="viewBox" body-padding-bottom="55px">
+        
+
+
+
+   
+
+
+
 
       <div class="content">
         <div style="height:44px;">
           <sticky ref="sticky" :offset="46" :check-sticky-support="false">
             <tab :line-width="1">
 
-              <tab-item v-if='index==0' selected v-for="(item,index) in categoriesList" @click.native="show(index)">{{item.name}}
-                <!--<tab-item v-if='infex==1' @click.native="show(index)">11</tab-item>-->
+              <tab-item selected >推荐图书
+                <tab-item v-if='infex==1' @click.native="show(index)">11</tab-item>
               </tab-item>
-              <tab-item v-if='index!=0' v-for="(item,index) in categoriesList" @click.native="show(index)">{{item.name}}
-                <!--<tab-item v-if='infex==1' @click.native="show(index)">11</tab-item>-->
-              </tab-item>
-              <!--<tab-item @click.native="show(1)">启慧 <span style="font-size:12px">(7-12岁)</span></tab-item>
+
+              <tab-item @click.native="show(1)">启慧 <span style="font-size:12px">(7-12岁)</span></tab-item>
                    <tab-item @click.native="show(2)">思辨 <span style="font-size:12px">(12岁以上)</span></tab-item>
-                   <tab-item @click.native="show(3)">其他</tab-item>-->
+                   <tab-item @click.native="show(3)">其他</tab-item>
             </tab>
           </sticky>
         </div>
+        <scroller style="top:0px" lock-x scrollbar-y height="-104" ref="scroller"  v-model="demo4Value"
+                @on-pullup-loading="load4">
+                <div>
+                <myhead></myhead>
 
-        <div v-for="(item,index) in bookList">
+
+                <swiper :aspect-ratio="300/800" :list="ADList" dots-position="center" auto loop></swiper>
+
+                <div style="height: 190px;background-color: #FAFAFA;">
+                  <ul>
+                    <li>
+                      <div class="box1-item">
+                        <a href="./had_to_borrow_books.html">
+                          <div class="iconWapper">
+                            <i class="iconfont icon-jieyueguanli"></i>
+                          </div>
+                          <p>我的借阅</p>
+                        </a>
+                      </div>
+                    </li>
+          
+                    <li>
+                      <div class="box1-item">
+                        <a href="./reservation_books.html">
+                          <div class="iconWapper">
+                            <i class="iconfont icon-jieyuejilu"></i>
+                          </div>
+                          <p>我的预借</p>
+                        </a>
+                      </div>
+                    </li>
+          
+                    <li>
+                      <div class="box1-item">
+                        <a href="./collection_books.html">
+                          <div class="iconWapper">
+                            <i class="iconfont icon-shoucang"></i>
+                          </div>
+                          <p>我的收藏</p>
+                        </a>
+                      </div>
+                    </li>
+          
+                    <li>
+                      <div class="box1-item">
+                        <a href="./recommended_books.html">
+                          <div class="iconWapper">
+                            <i class="iconfont icon-qiuyi"></i>
+                          </div>
+                          <p>我想求书</p>
+                        </a>
+                      </div>
+                    </li>
+          
+                    <li>
+                      <div class="box1-item">
+                        <a href="./borrow_bank.html">
+                          <div class="iconWapper">
+                            <i class="iconfont icon-qiuyi"></i>
+                          </div>
+                          <p>借阅排名</p>
+                        </a>
+                      </div>
+                    </li>
+          
+                    <li>
+                      <div class="box1-item">
+                        <div class="iconWapper">
+                          <i class="iconfont icon-huodong"></i>
+                        </div>
+                        <p>精彩活动</p>
+                      </div>
+                    </li>
+          
+                    <li>
+                      <div class="box1-item">
+                        <a href="./recommended_books.html">
+                          <div class="iconWapper">
+                            <i class="iconfont icon-tuijian"></i>
+                          </div>
+                          <p>新书推荐</p>
+                        </a>
+                      </div>
+                    </li>
+          
+                    <li>
+                      <div class="box1-item" @click=goRegister>
+                        <a href="javascript:">
+                          <div class="iconWapper">
+                            <i class="iconfont icon-huiyuan1"></i>
+                          </div>
+                          <p>成为会员</p>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+
+
+
+        <div class="box2">
+          <div class="content">
+            <ul>
+              <li v-for="(item,index) in lists">
+                <group>
+                  <div class="left-book"><img :src="item.cover" alt=""></div>
+                  <div class="right-book">
+                    <p class="title">{{item.name}}</p>
+                    <p><span class="author">{{item.author}}</span> <span class="status">{{item.status}}</span></p>
+                    <p class="content"></p>
+                    <p class="buttons">
+                      <x-button mini @click.native='deleteUncollect(item.id)' type="primary">取消收藏</x-button>
+                    </p>
+                  </div>
+                </group>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div slot="pullup" class="xs-plugin-pullup-container xs-plugin-pullup-up"
+             style="position: absolute; width: 100%; height: 50px; bottom: -50px; text-align: center;">
+          <span v-show="demo4Value.pullupStatus === 'default'"></span>
+          <span class="pullup-arrow"
+                v-show="demo4Value.pullupStatus === 'default' || demo4Value.pullupStatus === 'up' || demo4Value.pullupStatus === 'down'"
+                :class="{'rotate': demo4Value.pullupStatus === 'down'}">↑</span>
+          <span v-show="demo4Value.pullupStatus === 'loading'"><spinner type="ios-small"></spinner></span>
+        </div>
+
+      </div>
+      </scroller>
+
+         <div v-for="(item,index) in bookList">
           <transition :name="transitionName">
             <div v-show="listIndex==index" class="bookList">
               <flexbox wrap="wrap" :gutter="0" align="flex-start">
@@ -154,305 +353,15 @@
                 <div class="nofund" v-if='item.length==0'>
                     <p>该栏目暂没有图书</p>
                 </div>
-
-
-
-
-
-
               </flexbox>
             </div>
           </transition>
-        </div>
-
-        <!-- <div>
-          <transition :name="transitionName">
-            <div v-show="listIndex==1" class="bookList">
-              <flexbox wrap="wrap" :gutter="0" align="flex-start">
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <div>
-                        <img src="/static/book.jpg" alt="">
-                      </div>
-                      <div class="detail">
-                        <p class="title">2画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <div>
-                        <img src="/static/book.jpg" alt="">
-                      </div>
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <div>
-                        <img src="/static/book.jpg" alt="">
-                      </div>
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <div>
-                        <img src="/static/book.jpg" alt="">
-                      </div>
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <div>
-                        <img src="/static/book.jpg" alt="">
-                      </div>
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <div>
-                        <img src="/static/book.jpg" alt="">
-                      </div>
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-
-              </flexbox>
-            </div>
-          </transition>
-        </div>
-
-        <div>
-          <transition :name="transitionName">
-            <div v-show="listIndex==2" class="bookList">
-              <flexbox wrap="wrap" :gutter="0" align="flex-start">
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <div>
-                        <img src="/static/book.jpg" alt="">
-                      </div>
-                      <div class="detail">
-                        <p class="title">3画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <div>
-                        <img src="/static/book.jpg" alt="">
-                      </div>
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <div>
-                        <img src="/static/book.jpg" alt="">
-                      </div>
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <img src="/static/book.jpg" alt="">
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <img src="/static/book.jpg" alt="">
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <img src="/static/book.jpg" alt="">
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-
-              </flexbox>
-            </div>
-          </transition>
-        </div>
-
-        <div>
-          <transition :name="transitionName">
-            <div v-show="listIndex==3" class="bookList">
-              <flexbox wrap="wrap" :gutter="0" align="flex-start">
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <img src="/static/book.jpg" alt="">
-                      <div class="detail">
-                        <p class="title">4画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <img src="/static/book.jpg" alt="">
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <img src="/static/book.jpg" alt="">
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <img src="/static/book.jpg" alt="">
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <img src="/static/book.jpg" alt="">
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-                <flexbox-item :span="1/3">
-                  <div class="book">
-                    <div>
-                      <img src="/static/book.jpg" alt="">
-                      <div class="detail">
-                        <p class="title">婴儿画报2017年大撒</p>
-                        <p class="author">作者:金波</p>
-
-                      </div>
-                    </div>
-                  </div>
-                </flexbox-item>
-
-
-              </flexbox>
-            </div>
-          </transition>
-        </div> -->
-
-
+        </div> 
       </div>
 
 
-    </view-box>
-    <foot :index="1"></foot>
+    </view-box> -->
+    <!-- <foot :index="1"></foot> -->
 
   </div>
 

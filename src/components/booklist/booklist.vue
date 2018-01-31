@@ -76,7 +76,7 @@
         <div class="box2">
           <div class="content">
             <ul>
-              <li v-for="(item,index) in lists">
+              <li v-for="(item,index) in list1">
                 <group>
                   <div class="left-book"><img :src="item.cover" alt=""></div>
                   <div class="right-book">
@@ -139,21 +139,24 @@
       </scroller>
     </div>
 
-     <div v-if="sort=='borrow_bank'">
-      <scroller style="top:0px" lock-x scrollbar-y height="-104" ref="scroller" use-pullup v-model="demo4Value"
+    
+  <div v-if="sort=='borrow_bank'">
+       <!-- <scroller style="top:0px" lock-x scrollbar-y height="-104" ref="scroller" use-pullup v-model="demo4Value"
+                @on-pullup-loading="load4"> -->
+                <scroller style="top:0px" lock-x scrollbar-y height="-104" ref="scroller"  v-model="demo4Value"
                 @on-pullup-loading="load4">
         <div class="box2">
           <div class="content">
             <ul>
-              <li v-for="(item,index) in lists">
+              <li v-for="(item,index) in lists" >
                 <group>
-                  <div class="left-book"><img :src="item.img" alt=""></div>
+                  <div class="left-book"><img :src="item.cover" alt=""></div>
                   <div class="right-book">
-                    <p class="title">{{item.title}}</p>
+                    <p class="title">{{item.name}}</p>
                     <p><span class="author">{{item.author}}</span> <!--<span class="status">{{item.status}}</span>--> </p>
                     <p class="content">当前借阅<span>100</span>次</p>
                     <p class="buttons">
-                      <x-button mini type="primary">我要借阅</x-button>
+                      <x-button @click.native="goDetail(item.id)" mini type="primary">我要借阅</x-button>
                     </p>
                   </div>
                 </group>
@@ -161,20 +164,51 @@
             </ul>
           </div>
         </div>
-        <div slot="pullup" class="xs-plugin-pullup-container xs-plugin-pullup-up"
+        <!-- <div slot="pullup" class="xs-plugin-pullup-container xs-plugin-pullup-up"
              style="position: absolute; width: 100%; height: 50px; bottom: -50px; text-align: center;">
           <span v-show="demo4Value.pullupStatus === 'default'"></span>
           <span class="pullup-arrow"
                 v-show="demo4Value.pullupStatus === 'default' || demo4Value.pullupStatus === 'up' || demo4Value.pullupStatus === 'down'"
                 :class="{'rotate': demo4Value.pullupStatus === 'down'}">↑</span>
           <span v-show="demo4Value.pullupStatus === 'loading'"><spinner type="ios-small"></spinner></span>
-        </div>
+        </div> -->
       </scroller>
     </div>
 
-
-
-
+    <div v-if='sort=="classlist"'>
+       <!-- <scroller style="top:0px" lock-x scrollbar-y height="-104" ref="scroller" use-pullup v-model="demo4Value"
+                @on-pullup-loading="load4"> -->
+                <scroller style="top:0px" lock-x scrollbar-y height="-104" ref="scroller"  v-model="demo4Value"
+                @on-pullup-loading="load4">
+        <div class="box2">
+          <div class="content">
+            <ul>
+              <li v-for="(item,index) in list1" >
+                <group>
+                  <div class="left-book"><img :src="item.cover" alt=""></div>
+                  <div class="right-book">
+                    <p class="title">{{item.name}}</p>
+                    <p><span class="author">{{item.author}}</span> <!--<span class="status">{{item.status}}</span>--> </p>
+                    <p class="content">当前借阅<span>100</span>次</p>
+                    <p class="buttons">
+                      <x-button @click.native="goDetail(item.id)" mini type="primary">我要借阅</x-button>
+                    </p>
+                  </div>
+                </group>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div slot="pullup" class="xs-plugin-pullup-container xs-plugin-pullup-up"
+             style="position: absolute; width: 100%; height: 50px; bottom: -50px; text-align: center;">
+          <span v-show="demo4Value.pullupStatus === 'default'"></span>
+          <span class="pullup-arrow"
+                v-show="demo4Value.pullupStatus === 'default' || demo4Value.pullupStatus === 'up' || demo4Value.pullupStatus === 'down'"
+                :class="{'rotate': demo4Value.pullupStatus === 'down'}">↑</span>
+          <span v-show="demo4Value.pullupStatus === 'loading'"><spinner type="ios-small"></spinner></span>
+        </div> -->
+      </scroller>
+    </div>
 
 
   </div>

@@ -16,36 +16,24 @@ html, body {
   background: #fff;
 }
 
-
-#body   .bookList {
-  padding-left: 10px;
-  padding-right: 10px;
-  background: $theme-gray50-color;
-  transition: all 0s cubic-bezier(.55, 0, .1, 1);
-    .book {
-      margin-top: 10px;
-    }
-    .book .bookWrapper > div {
-      max-width: 100px;
-      max-height: 130px;
-      margin: 0 auto;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    img {
-      max-width: 100px;
-      min-height: 130px
-    }
-  }
-  .nofund{
-    width: 100%;
-    text-align: center;
-    p{
-      padding-top: 30px;
+#body .content {
+  .bookClass {
+    font-size: 0;
+    white-space: nowrap;
+    overflow-y: hidden;
+    background-color: $theme-gray50-color;
+    li {
+      display: inline-block;
+      width: 25vw;
       font-size: 14px;
-      color: $theme-gray800-color;
+      text-align: center;
+      line-height: 44px;
+    }
+    .selected{
+      color:$theme-red700-color
     }
   }
+}
 
 #body .content {
   .bookList {
@@ -91,7 +79,7 @@ html, body {
   .iconfont {
     font-size: 22px;
     font-weight: normal;
-    color:$theme-red700-color;
+    color: $theme-red700-color;
   }
 }
 
@@ -118,7 +106,7 @@ html, body {
     color: $theme-red700-color;
     font-weight: normal;
   }
-  p{
+  p {
     color: $theme-gray800-color;
     font-size: 13px;
 
@@ -141,7 +129,7 @@ html, body {
     -webkit-line-clamp: 2;
     font-size: 13px;
     font-weight: normal;
-    color:$theme-gray800-color;
+    color: $theme-gray800-color;
     margin-top: 4px;
   }
   .author {
@@ -183,7 +171,7 @@ html, body {
   background: rgba(0, 0, 0, 0.2);
 }
 
-#body .vux-tab{
+#body .vux-tab {
   background: $theme-gray50-color;;
 }
 

@@ -1,9 +1,11 @@
 import 'vux/src/styles/reset.less';
-import './class.scss'
+import './searchlist.scss'
 import {Swiper, Scroller, Tab, TabItem, Sticky, Flexbox, FlexboxItem, ViewBox} from 'vux'
 
 import { hostImg } from 'js/host-config'
 import { fetch, rap } from 'js/fetch.js'
+
+import utils from 'js/utils.js'
 
 let url = {
   getCategories: 'api/book/categories',
@@ -16,11 +18,14 @@ import Top from 'components/top/top.vue'
 // import Search from 'components/search/search.vue'
 import Foot from 'components/foot/foot.vue'
 
+import Booklist from 'components/booklist/booklist.vue'
+
 import mixin from 'js/mixin.js'
 
 new Vue({
   el: '#body',
   data: {
+    type:'classlist',
     categoriesList: [],
     bookList:[],
     bannerList: [{
@@ -36,50 +41,35 @@ new Vue({
     }],
     listIndex: 0,
     transitionName: 'slide-left',
-    mylist:[] //临时存放
+    mylist:[], //临时存放
+    category_id:0,
+    token:'',
+    search:''
   },
   created() {
-    this.getCategories()
+    this.search = utils.getQuery('search')
+    //console.log(this.bookID)
+    //this.getCategories()
+    this.getList(this.search)
   },
   methods: {
-    goList(id){
-      window.location.href=`./classlist.html?id=${id}`
+    goDetail(id){
+      window.location.href=`./books_detail.html?id=${id}`
     },
-    getCategories() {
-      //获取首页一级栏目
-      let _this = this
-      fetch('get', url.getCategories, {
-          pid: 0,
-      }).then(res => {
-        if (res.status >= 200 && res.status <= 500) {
-          this.categoriesList = res.data
-          //console.log(res)
-          res.data.forEach( (item, index)=> {
-            item.avatar=`${hostImg}${item.avatar}`
-            //console.log(item)
-            //axios.all([this({ id: item.id }), getUserPermissions()])
-            //  .then(axios.spread(function (acct, perms) {
-                // Both requests are now complete
-            //  }));
-            //_this.getbook({ category_id: item.id })
-          })
-        }
-      })
-    },
-    getbook(config = null) {
+    getList(id) {
       //获取图书
       let _this = this
-      fetch('get', url.getBooks, {
-        params: config
-      }).then(res => {
+      fetch('get', url.getBooks+'?keyword='+this.search).then(res => {
         //this.bookList.psuh(res.data)
         if (res.status >= 200 && res.status <= 500) {
-          //this.categoriesList = res.data
-          res.data.forEach((item,index)=>{
-            item.cover=`${hostImg}${item.cover}`
-          })
-          _this.mylist[config.category_id-1]=res.data
-          _this.$set(_this, 'bookList', _this.mylist);
+        
+          //  res.data.forEach((item,index)=>{
+          //    item.cover=`${hostImg}${item.cover}`
+          //  })
+          //this.bookList=res.data
+          
+          //_this.mylist[config.category_id]=res.data
+          _this.$set(_this, 'bookList', res.data);
         }
 
       })
@@ -107,7 +97,8 @@ new Vue({
     Sticky,
     Flexbox,
     FlexboxItem,
-    ViewBox
+    ViewBox,
+    Booklist
   },
   mixins: [mixin]
 })

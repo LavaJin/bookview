@@ -30,7 +30,7 @@ export default {
     token:{
       type: String
     },
-    list:{
+    list1:{
       type: Array
     }
   },
@@ -65,6 +65,7 @@ export default {
     }
   },
   created(){
+      
 
     //this.bookList=this.list
   
@@ -76,6 +77,9 @@ export default {
    // console.log(this.lists)
   },
   methods: {
+    goDetail(id){
+      window.location.href=`./books_detail.html?id=${id}`
+    },
     load4 () {
       this.demo4Value.pullupStatus = 'up'
       setTimeout(() => {

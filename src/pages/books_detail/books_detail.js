@@ -56,13 +56,11 @@ new Vue({
   created() {
     this.isLogin = utils.isLogin()
     //没有登录去登录
-    if (!this.isLogin) {
-      window.location.href = './login.html'
-    } else {
+
       this.token = cookie.get('token')
       this.bookID = utils.getQuery('id')
       this.getBookDetail()
-    }
+    
   },
   methods: {
     collect:debounce (function(e,id){

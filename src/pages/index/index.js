@@ -1,6 +1,6 @@
 import 'vux/src/styles/reset.less';
 import './index.scss'
-import { Swiper, Scroller, Tab, TabItem, Sticky, Flexbox, FlexboxItem, ViewBox } from 'vux'
+import { Swiper, Spinner, Scroller, Tab, TabItem, Sticky, Flexbox, FlexboxItem, ViewBox } from 'vux'
 import utils from 'js/utils.js'
 
 import { hostImg } from 'js/host-config'
@@ -10,7 +10,8 @@ import { fetch, rap } from 'js/fetch.js'
 let url = {
   getAD: 'api/ads',
   getCategories: 'api/book/categories',
-  getBooks: 'api/books'
+  getBooks: 'api/books',
+  getHomeRecommend:'api/books?type=home_recommend'
 }
 
 url = rap(url)
@@ -31,16 +32,55 @@ new Vue({
     transitionName: 'slide-left',
     isLogin: '',
     bookList: [],
-    mylist:[] //临时存放
+    mylist: [], //临时存放
+    demo4Value: {
+      pullupStatus: 'default'
+    },
+    lists: [{
+      title: '婴儿画报2017年第三季度合订本',
+      img: '/static/book.jpg',
+      author: '作者金波',
+      status: '已领取',
+    },
+    {
+      title: '婴儿画报2017年第三季度合订本',
+      img: '/static/book.jpg',
+      author: '作者金波',
+      status: '已领取',
+    },
+    {
+      title: '婴儿画报2017年第三季度合订本',
+      img: '/static/book.jpg',
+      author: '作者金波',
+      status: '已领取',
+    }]
   },
   created() {
     this.isLogin = utils.isLogin()
     this.getADList()
-    this.getCategories()
+    this.getHomeRecommend()
   },
   mounted() {
   },
   methods: {
+    load4() {
+      alert(1)
+      this.demo4Value.pullupStatus = 'up'
+      setTimeout(() => {
+        this.bookList.push({
+          title: '婴儿画报2017年第三季度合订本',
+          img: '/static/book.jpg',
+          author: '作者金波',
+          status: '已领取',
+        })
+        setTimeout(() => {
+          this.demo4Value.pullupStatus = 'default'
+          this.$nextTick(() => {
+            this.$refs.scroller.reset()
+          })
+        }, 10)
+      }, 2000)
+    },
     show(index) {
       //console.log(this.listIndex + 'listIndex')
       //console.log(index + 'index')
@@ -58,13 +98,26 @@ new Vue({
           res.data.forEach((item, index) => {
             let obj = {
               img: `${hostImg}${item.ad_image}`,
-              url: `${item.link}`,
+              //url: `${item.link}`,
               /*title: `${item.name}`*/
             }
             this.ADList.push(obj)
           })
         } else {
 
+        }
+      })
+    },
+    getHomeRecommend() {
+      //获取首页推荐图书
+      fetch('get', `${url.getHomeRecommend}`, {
+      }).then(res => {
+        if (res.status >= 200 && res.status <= 500) {
+         console.log(res)
+         res.data.forEach((item,index)=>{
+          item.cover = `${hostImg}${item.cover}` 
+         })
+         this.bookList=res.data
         }
       })
     },
@@ -83,15 +136,15 @@ new Vue({
             //console.log(item)
             //axios.all([this({ id: item.id }), getUserPermissions()])
             //  .then(axios.spread(function (acct, perms) {
-                // Both requests are now complete
+            // Both requests are now complete
             //  }));
             _this.getbook({ category_id: item.id })
           })
         }
       })
     },
-    _getbook(config){
-      return fetch('get', url.getBooks, {params: config})
+    _getbook(config) {
+      return fetch('get', url.getBooks, { params: config })
     },
     getbook(config = null) {
       //获取图书
@@ -102,17 +155,17 @@ new Vue({
         //this.bookList.psuh(res.data)
         if (res.status >= 200 && res.status <= 500) {
           //this.categoriesList = res.data
-          res.data.forEach((item,index)=>{
-            item.cover=`${hostImg}${item.cover}`
+          res.data.forEach((item, index) => {
+            item.cover = `${hostImg}${item.cover}`
           })
-          _this.mylist[config.category_id-1]=res.data
+          _this.mylist[config.category_id - 1] = res.data
           _this.$set(_this, 'bookList', _this.mylist);
         }
 
       })
     },
-    goDetail(id){
-      window.location.href=`./books_detail.html?id=${id}`
+    goDetail(id) {
+      window.location.href = `./books_detail.html?id=${id}`
     },
     goRegister() {
       //如果登录了就跳购买会员页面 没有就去注册
@@ -126,6 +179,7 @@ new Vue({
   components: {
     Swiper,
     Scroller,
+    Spinner,
     Tab,
     TabItem,
     Sticky,

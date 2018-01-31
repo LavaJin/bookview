@@ -13,7 +13,8 @@ import {
 import {fetch, rap} from 'js/fetch.js'
 let url = {
   list: '/merchandiseHot/list.do',
-  slideList: '/slide/listSlides.do'
+  slideList: '/slide/listSlides.do',
+  getRank:'api/books'
 }
 url = rap(url)
 
@@ -26,6 +27,7 @@ new Vue({
   el: '#body',
   data: {
     showList1: true,
+    bookList:[],
     lists: [
       {
         title: '婴儿画报2017年第三季度合订本',
@@ -72,9 +74,40 @@ new Vue({
     }
   },
   created() {
-
+    this.getRank()
   },
   methods: {
+    getRank(){
+      fetch('get', url.getRank, {type:'borrow'}).then(res => {
+        if (res.status >= 200 && res.status <= 300) {
+          this.bookList=res.data
+          // res.data=[{
+          //     "id":1,//收藏id
+          //     "name":"拍黄片",//图书名称
+          //     "cover":"book/gRWexYxbrJBe7C1iOjmx8L7cshWVvaM88qLtdrmr.jpeg",//图书封面
+          //     "author":"huhao",//作者
+          //     "borrow_count":0,//借阅统计
+          //     "detail":"<p>二月也<br/></p>"//图书详情
+          //   }
+          // ]
+          //mock
+          this.$set(this, 'bookList', res.data);
+          //console.log(this.bookList)
+
+        }else {
+          this.$vux.toast.show({
+            text: res.data.message,
+            type: 'warn',
+            onShow() {
+              //console.log('Plugin: I\'m showing')
+            },
+            onHide() {
+              //console.log('Plugin: I\'m hiding')
+            }
+          })
+        }
+      })
+    },
     load4 () {
       this.demo4Value.pullupStatus = 'up'
       setTimeout(() => {

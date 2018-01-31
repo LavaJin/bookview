@@ -10,6 +10,8 @@ import {
 Vue.use(ToastPlugin)
 Vue.use(ConfirmPlugin)
 
+import axios from 'axios'
+
 import utils from 'js/utils.js'
 
 import { cookie } from 'vux'
@@ -56,7 +58,31 @@ new Vue({
         content: '您确定要执行退出操作吗？',
         onConfirm() {
           //登出
-          fetch('get', url.getUserInfo, { null: null, headers: { 'Authorization': _this.token } }).then(res => {
+          // axios.defaults.validateStatus = function (status) {
+          //   return status >= 200 && status <= 500; //默认
+          // }
+
+          // axios.post('http://www.5chelib.com/api/login').then(res=>{
+          //   if (res.status >= 200 && res.status <= 500) {
+          //     alert('成功')
+          //     //cookie.remove('token')
+          //     //window.location.href = './index.html'
+          //   } else{
+          //     alert('失败')
+          //     _this.$vux.toast.show({
+          //       text: res.data.message,
+          //       type: 'warn',
+          //       onShow() {
+          //         //console.log('Plugin: I\'m showing')
+          //       },
+          //       onHide() {
+          //         //console.log('Plugin: I\'m hiding')
+          //       }
+          //     })
+          //   }
+          // })
+
+          fetch('post', url.postLogout).then(res => {
             if (res.status >= 200 && res.status <= 300) {
               cookie.remove('token')
               window.location.href = './index.html'
@@ -84,8 +110,8 @@ new Vue({
         if (res.status >= 200 && res.status <= 300) {
           this.userInfo = res.data
         } else if(res.status ==401){
-          cookie.remove('token')
-          window.location.href='./login.html'
+          //cookie.remove('token')
+          //window.location.href='./login.html'
         }else {
           this.$vux.toast.show({
             text: res.data.message,

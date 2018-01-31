@@ -33,8 +33,13 @@ export default {
 
   },
   methods: {
-    haha () {
-      alert(1)
+    goSearch(){
+    
+      if(this.value==''){
+
+      }else{
+        window.location.href=`./searchlist.html?search=${this.value}`
+      }
     },
     setFocus () {
       //this.$refs.search.setFocus()
