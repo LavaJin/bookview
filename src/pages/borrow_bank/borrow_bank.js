@@ -26,74 +26,48 @@ import mixin from 'js/mixin.js'
 new Vue({
   el: '#body',
   data: {
+    token:'',
     showList1: true,
     bookList:[],
-    lists: [
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-      }, {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-      },
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-      },
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-      },
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-      },
-      {
-        title: '婴儿画报2017年第三季度合订本',
-        img: '/static/book.jpg',
-        author: '作者金波',
-        status: '已领取',
-      },
-    ],
     scrollTop: 0,
     onFetching: false,
     bottomCount: 20,
     n4: 10,
     demo4Value: {
       pullupStatus: 'default'
-    }
+    },
+    limit: 5,//取几个
+    offset: 0,//从第几个开始取,
+    stop: false//停止加载
   },
   created() {
     this.getRank()
   },
   methods: {
-    getRank(){
-      fetch('get', url.getRank, {type:'borrow'}).then(res => {
-        if (res.status >= 200 && res.status <= 300) {
-          this.bookList=res.data
-          // res.data=[{
-          //     "id":1,//收藏id
-          //     "name":"拍黄片",//图书名称
-          //     "cover":"book/gRWexYxbrJBe7C1iOjmx8L7cshWVvaM88qLtdrmr.jpeg",//图书封面
-          //     "author":"huhao",//作者
-          //     "borrow_count":0,//借阅统计
-          //     "detail":"<p>二月也<br/></p>"//图书详情
-          //   }
-          // ]
-          //mock
-          this.$set(this, 'bookList', res.data);
-          //console.log(this.bookList)
+    load() {
+      //子级触发父级加载数据事件
 
+      //增加翻页标志
+      this.offset += this.limit
+      //请求数据
+      this.getRank()
+    },
+    getRank(){ 
+      //获取图书排名
+      if (!!this.stop) {
+        return
+      }
+      fetch('get', `${url.getRank}?limit=${this.limit}&offset=${this.offset}`, {type:'borrow'}).then(res => {
+        if (res.status >= 200 && res.status <= 300) {
+          this.bookList = this.bookList.concat(res.data)
+          if (res.data.length == 0) {
+            //没有数据就停止懒加载
+            this.stop = true
+          }
+          if (!!this.$refs.booklist) {
+            //兼容报错
+            this.$refs.booklist.load()
+          }
         }else {
           this.$vux.toast.show({
             text: res.data.message,

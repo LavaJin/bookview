@@ -1,0 +1,32 @@
+@import "../../modules/icon/fonts/iconfont.css";
+@import "../../modules/sass/variables.scss";
+#body .weui-cells {
+    .main {
+        text-align: left;
+        .content {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+    }
+    .status {
+        text-align: center;
+        width: 2em;
+        padding: 3px;
+        border-radius: 3px
+    }
+    .unread {
+        background: $theme-red700-color;
+        color: white
+    }
+    .read {
+        background: $theme-gray500-color;
+        color: white
+    }
+    .nomessage {
+        text-align: center;
+        min-height: 5em;
+        line-height: 5em
+    }
+}

@@ -107,7 +107,8 @@ new Vue({
     Sticky,
     Flexbox,
     FlexboxItem,
-    ViewBox
+    ViewBox,
+    Foot
   },
   mixins: [mixin]
 })

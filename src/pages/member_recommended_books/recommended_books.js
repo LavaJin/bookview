@@ -7,21 +7,18 @@ import {
   Panel,
   XButton,
   Scroller,
-  Spinner,
-  XInput
+  Spinner
 } from 'vux'
 
 import {fetch, rap} from 'js/fetch.js'
 let url = {
   list: '/merchandiseHot/list.do',
-  slideList: '/slide/listSlides.do'
+  slideList: '/slide/listSlides.do',
+  getRank:'api/books'
 }
 url = rap(url)
-import Myhead from 'components/head/head.vue'
-// import Slide from 'components/slide/slide.vue'
-import Top from 'components/top/top.vue'
-// import Search from 'components/search/search.vue'
-import Foot from 'components/foot/foot.vue'
+
+
 import Booklist from 'components/booklist/booklist.vue'
 
 import mixin from 'js/mixin.js'
@@ -29,52 +26,45 @@ import mixin from 'js/mixin.js'
 new Vue({
   el: '#body',
   data: {
-    value1:'',
-    value2:'',
-    value3:'',
+    token:'',
     showList1: true,
+    bookList:[],
     lists: [
       {
         title: '婴儿画报2017年第三季度合订本',
         img: '/static/book.jpg',
         author: '作者金波',
         status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
       }, {
         title: '婴儿画报2017年第三季度合订本',
         img: '/static/book.jpg',
         author: '作者金波',
         status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
       },
       {
         title: '婴儿画报2017年第三季度合订本',
         img: '/static/book.jpg',
         author: '作者金波',
         status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
       },
       {
         title: '婴儿画报2017年第三季度合订本',
         img: '/static/book.jpg',
         author: '作者金波',
         status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
       },
       {
         title: '婴儿画报2017年第三季度合订本',
         img: '/static/book.jpg',
         author: '作者金波',
         status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
       },
       {
         title: '婴儿画报2017年第三季度合订本',
         img: '/static/book.jpg',
         author: '作者金波',
         status: '已领取',
-        content:'《婴儿画报》创刊30余年，为0～4岁的婴儿提供精彩的阅读内容，打造婴儿杂志知名品牌。《婴儿画报》画面大'
-      }
+      },
     ],
     scrollTop: 0,
     onFetching: false,
@@ -85,9 +75,40 @@ new Vue({
     }
   },
   created() {
-
+    this.getRank()
   },
   methods: {
+    getRank(){
+      fetch('get', url.getRank, {type:'new_recommend'}).then(res => {
+        if (res.status >= 200 && res.status <= 300) {
+          console.log(res.data)
+          // res.data=[{
+          //     "id":1,//收藏id
+          //     "name":"拍黄片",//图书名称
+          //     "cover":"book/gRWexYxbrJBe7C1iOjmx8L7cshWVvaM88qLtdrmr.jpeg",//图书封面
+          //     "author":"huhao",//作者
+          //     "borrow_count":0,//借阅统计
+          //     "detail":"<p>二月也<br/></p>"//图书详情
+          //   }
+          // ]
+          //mock
+          this.$set(this, 'bookList', res.data);
+          //console.log(this.bookList)
+
+        }else {
+          this.$vux.toast.show({
+            text: res.data.message,
+            type: 'warn',
+            onShow() {
+              //console.log('Plugin: I\'m showing')
+            },
+            onHide() {
+              //console.log('Plugin: I\'m hiding')
+            }
+          })
+        }
+      })
+    },
     load4 () {
       this.demo4Value.pullupStatus = 'up'
       setTimeout(() => {
@@ -122,8 +143,6 @@ new Vue({
     Panel,
     XButton,
     Scroller,
-    Cell,
-    XInput,
     Booklist
   },
   mixins: [mixin]

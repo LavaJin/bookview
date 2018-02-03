@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     goSearch(){
-    
       if(this.value==''){
 
       }else{

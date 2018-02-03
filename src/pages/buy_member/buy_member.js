@@ -57,7 +57,7 @@ new Vue({
           console.log('plugin cancel')
         },
         onConfirm () {
-          fetch('post', `${url.getVip}/${id}/buy`, { null: null, headers: { 'Authorization': this.token } }).then(res => {
+          fetch('post', `${url.getVip}/${id}/buy`, {},{'headers':_this.token}).then(res => {
             if (res.status >= 200 && res.status <= 300) {
                this.$vux.toast.show({
                  text: '购买成功',
@@ -88,7 +88,7 @@ new Vue({
     },
     getVip() {
       //获取会员套餐
-      fetch('get', url.getVip).then(res => {
+      fetch('get', `${url.getVip}`,{},{'headers':this.token}).then(res => {
         if (res.status >= 200 && res.status <= 300) {
           console.log(res.data)
           //mock

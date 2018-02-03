@@ -32,10 +32,11 @@
                     <span class="status">已领取</span>
                   </p>
                   <p class="content">库存：{{bookInfo.inventory}}本
-                    <i class="iconfont icon-shoucang1" @click='collect($event,bookInfo.id)'></i>
-                    <span>{{bookInfo.like_count}}</span>
-                    <i class="iconfont icon-comment21"></i>
+                    <i v-if='!bookInfo.collected' class="iconfont icon-shoucang1" @click='collectButton($event,bookInfo.id)'></i>
+                    <i v-if='bookInfo.collected' class="iconfont icon-shoucang2" @click='collectButton($event,bookInfo.id)'></i>
                     <span>{{bookInfo.collect_count}}</span>
+                    <i class="iconfont icon-comment21"></i>
+                    <span>{{bookInfo.comment_count}}</span>
                   </p>
                   <p class="buttons">
                     <x-button mini type="primary">借阅</x-button>
@@ -53,18 +54,10 @@
       <div style="height:44px;">
         <sticky ref="sticky" :offset="46" :check-sticky-support="false">
           <tab :line-width="1">
-
             <tab-item v-if='index==0' selected v-for="(item,index) in categoriesList" @click.native="show(index)">{{item.name}}
-
             </tab-item>
-
             <tab-item v-if='index!=0' v-for="(item,index) in categoriesList" @click.native="show(index)">{{item.name}}
-
             </tab-item>
-
-
-
-
           </tab>
         </sticky>
       </div>

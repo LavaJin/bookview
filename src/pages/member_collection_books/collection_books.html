@@ -23,7 +23,8 @@
     </cell>
   </group>
 
-  <booklist :list='bookList' :sort="'collection_books'" :token='token'></booklist>
+  <booklist ref='booklist' @lazyload="load" v-if="bookList.length" :bookdata='bookList' :sort="'collection_books'" :token='token' :stop='stop'></booklist>
+  
 
 
 

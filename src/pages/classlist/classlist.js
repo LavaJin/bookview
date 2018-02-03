@@ -67,6 +67,7 @@ new Vue({
           //console.log(res)
           res.data.forEach( (item, index)=> {
             item.avatar=`${hostImg}${item.avatar}`
+            
             //console.log(item)
             //axios.all([this({ id: item.id }), getUserPermissions()])
             //  .then(axios.spread(function (acct, perms) {
@@ -90,7 +91,6 @@ new Vue({
             item.img=`${hostImg}${item.cover}`
           })
           this.bookList=res.data
-          alert(this.bookList)
           //_this.mylist[config.category_id]=res.data
           //_this.$set(_this, 'bookList', _this.mylist);
         }

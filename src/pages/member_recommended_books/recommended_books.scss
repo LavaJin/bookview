@@ -4,48 +4,101 @@
 html, body {
   height: 100%;
   width: 100%;
-  background: $theme-gray200-color;
+  background: $theme-gray50-color;
 }
 
-#body .content ul li:nth-of-type(1) .weui-cells {
-  margin-top: 0;
+#body .vux-header {
+  background: $theme-gray50-color;
 }
 
-#body .vux-label{
-  color: $theme-gray800-color;
-  font-size: 15px;
+#body .weui-cells {
+  background: $theme-gray50-color;
 }
 
-#body .weui-cell__ft{
-  position: relative;
-  color: $theme-red700-color;
+#body .weui-cells:before {
+  display: none;
 }
 
-#body .weui-icon-warn{
-  color: $theme-red700-color;
-}
-#body .require{
-  position: relative;
-  top:4px;
+#body .weui-cells:after {
+  left: 10px;
+  right: 10px;
 }
 
-#booklist .weui-cells{
-  margin-top: 0;
-  
-}
-#booklist .weui-cells:after{
-  left:0;
-  right:0
-}
-
-
-#body .vux-label .number {
-  color: $theme-red700-color;
-}
-
-#body .weui-btn_default {
-  background: $theme-red700-color;
-  color: white;
+#body {
+  .content {
+    background: $theme-gray50-color;
+    .left-book {
+      width: 105px;
+      vertical-align: top;
+      margin-left: 5px;
+      margin-right: 5px;
+      position: absolute;
+      max-width: 100px;
+      max-height: 130px;
+      margin: 0 auto;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-left: 10px;
+      img {
+        max-width: 105px;
+      }
+    }
+    .right-book {
+      font-size: 17px;
+      margin-left: 120px;
+      .title{
+        font-size: 17px;
+        color: $theme-gray800-color;
+      }
+    }
+  }
+  li {
+    & > div {
+      position: relative;
+    }
+    .weui-cells {
+      padding-top: 14px;
+      min-height: 145px;
+      .author {
+        font-size: 15px;
+        padding-right: 7px;
+        color: $theme-gray600-color;
+      }
+      .content {
+        text-indent: 1em;
+        font-size: 14px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+      .status {
+        color: #d32f2f;
+        font-size: 14px;
+        position: absolute;
+        top: 41px;
+        right: 13px;
+      }
+      .buttons {
+        position: absolute;
+        top: 100px
+      }
+    }
+    & .weui-cells {
+      margin-top: 0;
+    }
+    & .weui-cells > div {
+      display: inline-block;
+      .weui-btn {
+        margin-right: 7px;
+        background: $theme-red700-color;
+      }
+      .weui-btn + .weui-btn {
+        color: $theme-red700-color;
+        background: $theme-gray50-color;
+      }
+    }
+  }
 }
 
 #body .rotate {
@@ -59,34 +112,5 @@ html, body {
   -webkit-transition: all linear 0.2s;
   color: #666;
   font-size: 25px;
-}
-
-#body .box2 .vux-no-group-title {
-  margin-top: 0;
-}
-
-#body .form .weui-cells {
-  background: $theme-gray50-color;
-  padding-bottom: 10px;
-  margin-top: 0;
-}
-
-#body .form .vux-x-input {
-  border: 1px solid #d7d7d7;
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 5px;
-  border-radius: 6px;
-  box-sizing: border-box;
-  padding: 4px 15px;
-  font-size: 13px;
-}
-
-#body .form .weui-btn {
-  width: 80%;
-  margin-top: 5px;
-  background: $theme-red700-color;
-  font-size: 13px;
-  line-height: 2.3;
 }
 

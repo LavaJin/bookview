@@ -12,7 +12,7 @@ import {
   FlexboxItem,
 } from 'vux'
 
-import {fetch, rap} from 'js/fetch.js'
+import { fetch, rap } from 'js/fetch.js'
 import { hostImg } from 'js/host-config'
 
 let url = {
@@ -27,16 +27,21 @@ export default {
     sort: {
       type: String
     },
-    token:{
+    token: {
       type: String
     },
-    list1:{
+    bookdata: {
       type: Array
+    },
+    stop:{
+      type: Boolean,
+      default:false
     }
   },
   data() {
     return {
-      bookList:[],
+      //bookList:[],
+      data: [],
       showList1: true,
       scrollTop: 0,
       onFetching: false,
@@ -47,57 +52,63 @@ export default {
       },
     }
   },
-  computed:{
-    lists(){
-      let myArray=[]
-      this.list.forEach((item,index) => {
-        let obj={
-          cover:`${hostImg}${item.cover}`,
-          author:`${item.author}`,
-          borrow_count:`${item.borrow_count}`,
-          detail:`${item.detail}`,
-          id:`${item.id}`,
-          name:`${item.name}`,
+  computed: {
+    lists() {
+      let myArray = []
+      this.data.forEach((item, index) => {
+        let obj = {
+          cover: `${hostImg}${item.cover}`,
+          author: `${item.author}`,
+          borrow_count: `${item.borrow_count}`,
+          detail: `${item.detail}`,
+          id: `${item.id}`,
+          name: `${item.name}`,
+          press: `${item.press}`,
+          status: `${item.status}`
         }
         myArray.push(obj)
       });
       return myArray
     }
   },
-  created(){
-      
-
-    //this.bookList=this.list
-  
-    //this.lists=this.list
-    //this.$set(this, 'lists', this.list);
-   // console.log('---')
-   // console.log(this.list)
-   // console.log('--+')
-   // console.log(this.lists)
+  watch:{
+    bookdata(val,oldVal){
+      this.$set(this, 'data', this.bookdata);
+    }
+  },
+  created() {
+    this.$set(this, 'data', this.bookdata);
   },
   methods: {
-    goDetail(id){
-      window.location.href=`./books_detail.html?id=${id}`
+    goDetail(id) {
+      window.location.href = `./books_detail.html?id=${id}`
     },
-    load4 () {
+    load() {
+      this.demo4Value.pullupStatus = 'default'
+      this.$nextTick(() => {
+        this.$refs.scroller.reset()
+      })
+    },
+    load4() {
       this.demo4Value.pullupStatus = 'up'
-      setTimeout(() => {
-        this.lists.push({
-          title: '婴儿画报2017年第三季度合订本',
-          img: '/static/book.jpg',
-          author: '作者金波',
-          status: '已领取',
-        })
-        setTimeout(() => {
-          this.demo4Value.pullupStatus = 'default'
-          this.$nextTick(() => {
-            this.$refs.scroller.reset()
-          })
-        }, 10)
-      }, 2000)
+      this.$emit('lazyload')
+      // setTimeout(() => {
+
+      //   // this.lists.push({
+      //   //   title: '婴儿画报2017年第三季度合订本',
+      //   //   img: '/static/book.jpg',
+      //   //   author: '作者金波',
+      //   //   status: '已领取',
+      //   // })
+      //   setTimeout(() => {
+      //     this.demo4Value.pullupStatus = 'default'
+      //     this.$nextTick(() => {
+      //       this.$refs.scroller.reset()
+      //     })
+      //   }, 10)
+      // }, 2000)
     },
-    show(index){
+    show(index) {
       if (this.listIndex > index) {
         this.transitionName = 'slide-right'
       } else {
@@ -105,43 +116,43 @@ export default {
       }
       this.listIndex = index
     },
-    deleteUncollect(id){
-        //取消收藏
-        let _this=this
-         fetch('delete', `${url.deelteUncollectBook}/${id}/uncollect`, { null: null, headers: { 'Authorization': this.token } }).then(res => {
-          if (res.status >= 200 && res.status <= 300) {
-            window.location.href=window.location.href
-            // this.lists.forEach(function(item,index){
-            //     if(item.id==id){
-                  
-            //       window.location.href=window.location.href
-            //     }
-            //})
-            // this.$vux.toast.show({
-            //   text: '收藏成功',
-            //   type: 'success',
-            //   onShow() {
-            //     //console.log('Plugin: I\'m showing')
-            //   },
-            //   onHide() {
-            //     window.location.href='./member.html'
-            //     //console.log('Plugin: I\'m hiding')
-            //   }
-            // })
-          } else {
-            
-            // this.$vux.toast.show({
-            //   text: res.data.message,
-            //   type: 'warn',
-            //   onShow() {
-            //     //console.log('Plugin: I\'m showing')
-            //   },
-            //   onHide() {
-            //     //console.log('Plugin: I\'m hiding')
-            //   }
-            // })
-          }
-        })
+    deleteUncollect(id) {
+      //取消收藏
+      let _this = this
+      fetch('delete', `${url.deelteUncollectBook}/${id}/uncollect?token=${this.token}`).then(res => {
+        if (res.status >= 200 && res.status <= 300) {
+          window.location.href = window.location.href
+          // this.lists.forEach(function(item,index){
+          //     if(item.id==id){
+
+          //       window.location.href=window.location.href
+          //     }
+          //})
+          // this.$vux.toast.show({
+          //   text: '收藏成功',
+          //   type: 'success',
+          //   onShow() {
+          //     //console.log('Plugin: I\'m showing')
+          //   },
+          //   onHide() {
+          //     window.location.href='./member.html'
+          //     //console.log('Plugin: I\'m hiding')
+          //   }
+          // })
+        } else {
+
+          // this.$vux.toast.show({
+          //   text: res.data.message,
+          //   type: 'warn',
+          //   onShow() {
+          //     //console.log('Plugin: I\'m showing')
+          //   },
+          //   onHide() {
+          //     //console.log('Plugin: I\'m hiding')
+          //   }
+          // })
+        }
+      })
     }
   },
   components: {

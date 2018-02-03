@@ -25,7 +25,8 @@
       </cell>
     </group> -->
   
-    <booklist :list='bookList' :sort="'classlist'" :token='token'></booklist>
+    
+    <booklist v-if="bookList.length" :bookdata="bookList" :sort="'classlist'" :token='token' ></booklist>
 
   
 

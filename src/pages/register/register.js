@@ -66,15 +66,12 @@ new Vue({
   },
   computed: {
     isDisabled() {
-      return false
       //用户名不为空      日期必选          孩子性别必选                 
       if (this.isAgree && this.name != '' && this.birthDay != '' && this.childGender.length != 0 && this.childLike != '' && this.address.length != 0 && this.detailAddress != '' && this.isCheckTel === true && this.isCheckPW === true && this.password != '' && this.phone != '') {
         return false
       } else {
         return true
       }
-
-      
     }
   },
   created() {

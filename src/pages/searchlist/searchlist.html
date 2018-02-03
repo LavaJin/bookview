@@ -25,7 +25,9 @@
       </cell>
     </group> -->
   
-    <booklist :list1='bookList' :sort="type" :token='token'></booklist>
+    <booklist  v-if="bookList.length" :bookdata='bookList' :sort="'classlist'" :token='token'></booklist>
+    
+    <div style="height:100vh;text-align:center;line-height:50vh" v-if="!bookList.length">没有找到相关书籍</div> 
 
   
 

@@ -20,8 +20,9 @@
   <!--<myhead slot="header" title="" :showsearch=true style="position:fixed;width: 100%;z-index:1"></myhead>-->
 
 
-    <booklist :list='bookList' :sort="'borrow_bank'"></booklist>
-
+    
+      
+    <booklist ref='booklist' @lazyload="load" v-if="bookList.length" :bookdata='bookList' :sort="'borrow_bank'" :token='token' :stop='stop'></booklist>
 
 
 

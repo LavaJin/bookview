@@ -38,17 +38,19 @@ new Vue({
     demo2: true,
     isLogin: false,
     token: '',
-    userInfo: ''
+    userInfo: '',
+    lerrerNumber:''
   },
   created() {
     this.isLogin = utils.isLogin()
     //没有登录去登录
-    if (!this.isLogin) {
-      window.location.href = './login.html'
-    } else {
+    //if (!this.isLogin) {
+     // window.location.href = './login.html'
+    //} else {
+      //this.token = cookie.get('token').replace("bearer","")
       this.token = cookie.get('token')
       this.getUserInfo()
-    }
+    //}
   },
   methods: {
     logout() {
@@ -57,32 +59,7 @@ new Vue({
         title: '退出',
         content: '您确定要执行退出操作吗？',
         onConfirm() {
-          //登出
-          // axios.defaults.validateStatus = function (status) {
-          //   return status >= 200 && status <= 500; //默认
-          // }
-
-          // axios.post('http://www.5chelib.com/api/login').then(res=>{
-          //   if (res.status >= 200 && res.status <= 500) {
-          //     alert('成功')
-          //     //cookie.remove('token')
-          //     //window.location.href = './index.html'
-          //   } else{
-          //     alert('失败')
-          //     _this.$vux.toast.show({
-          //       text: res.data.message,
-          //       type: 'warn',
-          //       onShow() {
-          //         //console.log('Plugin: I\'m showing')
-          //       },
-          //       onHide() {
-          //         //console.log('Plugin: I\'m hiding')
-          //       }
-          //     })
-          //   }
-          // })
-
-          fetch('post', url.postLogout).then(res => {
+          fetch('post', `${url.postLogout}`,{},{'headers':_this.token}).then(res => {
             if (res.status >= 200 && res.status <= 300) {
               cookie.remove('token')
               window.location.href = './index.html'
@@ -99,16 +76,15 @@ new Vue({
               })
             }
           })
-
         }
       })
-
     },
     getUserInfo() {
       //获取用户信息
-      fetch('get', url.getUserInfo, { null: null, headers: { 'Authorization': this.token } }).then(res => {
+      fetch('get',`${url.getUserInfo}`,{},{'headers':this.token}).then(res => {
         if (res.status >= 200 && res.status <= 300) {
           this.userInfo = res.data
+          this.lerrerNumber=window.localStorage.getItem('lerrerNumber')
         } else if(res.status ==401){
           //cookie.remove('token')
           //window.location.href='./login.html'

@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>个人中心</title>
 </head>
@@ -14,71 +13,74 @@
     display: none;
   }
 </style>
+
 <body>
-<div id="body" v-cloak>
+  <div id="body" v-cloak>
 
-  <myhead slot="header" title="" :showsearch=true style="position:fixed;width: 100%;z-index:1"></myhead>
+    <myhead slot="header" title="" :showsearch=true style="position:fixed;width: 100%;z-index:1"></myhead>
 
-  <div class="person">
-    <div>
-      <div class="headerWapper">
-        <img :src="userInfo.avatar" alt="" onerror="this.src='/static/head.png'">
+    <div class="person">
+      <div>
+        <div class="headerWapper">
+          <img :src="userInfo.avatar" alt="" onerror="this.src='/static/head.png'">
+        </div>
+        <div>
+          <p v-text='userInfo.name'></p>
+          <p>会员有效期：2018-01-31</p>
+        </div>
+        <div @click=logout>
+          <div class="right-arrow"></div>
+        </div>
       </div>
       <div>
-        <p v-text='userInfo.name'></p>
-        <p>会员有效期：2018-01-31</p>
-      </div>
-      <div @click=logout>
-        <div class="right-arrow"></div>
-      </div>
-    </div>
-    <div>
-      <div>
-        <span><i class="iconfont icon-comment21"></i>
-          <badge text="1"></badge>
-        </span>
-        <span><i class="iconfont icon-09"></i>
-        </span>
+        <div>
+          <a href="./message_list.html">
+          <span>
+            <i class="iconfont icon-comment21"></i>
+            <badge :text="lerrerNumber"></badge>
+          </span>
+          </a>
+          <span>
+            <i class="iconfont icon-09"></i>
+          </span>
+        </div>
       </div>
     </div>
+
+
+
+    <group class="myGroup">
+      <cell title="已借图书" link="./had_to_borrow_books.html">
+        <i slot="icon" class="iconfont icon-jieyueguanli"></i>
+      </cell>
+
+      <cell title="预定图书" link="./reservation_books.html">
+        <i slot="icon" class="iconfont icon-yuding"></i>
+      </cell>
+
+      <cell title="收藏图书" link="./collection_books.html">
+        <i slot="icon" class="iconfont icon-shoucang"></i>
+      </cell>
+
+      <cell title="我想求书" link="./member_seeking_books.html">
+        <i slot="icon" class="iconfont icon-qiuyi"></i>
+      </cell>
+
+      <cell title="历史借书" link="./history_books.html">
+        <i slot="icon" class="iconfont icon-lishiguiji"></i>
+      </cell>
+
+      <cell title="我的还书" link="./return_books.html">
+        <i slot="icon" class="iconfont icon-lishiguiji"></i>
+      </cell>
+
+    </group>
+
+
+    <foot :index="4"></foot>
+
+
   </div>
-
-
-
-  <group class="myGroup">
-    <cell title="已借图书" link="./had_to_borrow_books.html">
-      <i slot="icon" class="iconfont icon-jieyueguanli"></i>
-    </cell>
-
-    <cell title="预定图书" link="./reservation_books.html">
-      <i slot="icon" class="iconfont icon-yuding"></i>
-    </cell>
-
-    <cell title="收藏图书" link="./collection_books.html">
-      <i slot="icon" class="iconfont icon-shoucang"></i>
-    </cell>
-
-    <cell title="我想求书" link="./recommended_books.html">
-      <i slot="icon" class="iconfont icon-qiuyi"></i>
-    </cell>
-
-    <cell title="历史借书" link="./history_books.html">
-      <i slot="icon" class="iconfont icon-lishiguiji"></i>
-    </cell>
-
-    <cell title="我的还书" link="./return_books.html">
-      <i slot="icon" class="iconfont icon-lishiguiji"></i>
-    </cell>
-
-  </group>
-
-
-  <foot :index="4"></foot>
-
-
-</div>
 </body>
 
 </html>
-
-

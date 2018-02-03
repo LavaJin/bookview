@@ -62,13 +62,6 @@ new Vue({
       fetch('get', url.getBooks+'?keyword='+this.search).then(res => {
         //this.bookList.psuh(res.data)
         if (res.status >= 200 && res.status <= 500) {
-        
-          //  res.data.forEach((item,index)=>{
-          //    item.cover=`${hostImg}${item.cover}`
-          //  })
-          //this.bookList=res.data
-          
-          //_this.mylist[config.category_id]=res.data
           _this.$set(_this, 'bookList', res.data);
         }
 

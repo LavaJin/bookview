@@ -7,7 +7,7 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>推荐引进图书</title>
+  <title>新书推荐</title>
 </head>
 <style>
   [v-cloak] {
@@ -17,19 +17,14 @@
 <body>
 <div id="body" v-cloak>
 
-  <!--<myhead slot="header" title="推荐引进图书" :showsearch=true style="position:fixed;width: 100%;z-index:1"></myhead>-->
-
-  <div class="form">
-    <group>
-      <x-input placeholder="书名" v-model="value1" required><span slot="right" class="require">*</span></x-input>
-      <x-input placeholder="作者" v-model="value2"><span slot="right" class="require">*</span></x-input>
-      <x-input placeholder="出版社" v-model="value3"><span slot="right" class="require">*</span></x-input>
-      <x-button type="primary">提交</x-button>
-    </group>
-  </div>
+  <!--<myhead slot="header" title="" :showsearch=true style="position:fixed;width: 100%;z-index:1"></myhead>-->
 
 
-  <booklist :sort="'recommended_books'"></booklist>
+    
+    <booklist  v-if="bookList.length" :bookdata='bookList' :sort="'borrow_bank'" :token='token'></booklist>
+
+
+
 
 
   <foot :index="4"></foot>
